@@ -20,6 +20,7 @@
         <meta property="og:image:height" content="1080">
         <meta property="og:site_name" content="Automotriz Centeno">
         <meta property="og:locale" content="{{ app()->getLocale() }}">
+        <meta property="og:published_date" content="2023-06-01T12:00:00Z">
         <meta property="og:article:published_time" content="2023-06-01T12:00:00Z">
         <meta property="og:article:author" content="John Doe">
         <meta property="og:article:section" content="Automotriz">
