@@ -1,0 +1,26 @@
+{
+    "$schema": "https://json.schemastore.org/eslintrc",
+    "root": true,
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/vue3-recommended",
+        "plugin:tailwindcss/recommended",
+        "@vue/eslint-config-typescript/recommended",
+        "@vue/typescript/recommended"
+    ],
+    "plugins": ["tailwindcss"],
+    "rules": {
+        "semi": "error",
+        "prefer-const": "error",
+        "tailwindcss/no-custom-classname": "off",
+        "tailwindcss/classnames-order": "error",
+        "vue/multi-word-component-names": "off",
+        "vue/html-indent": "off"
+    },
+    "env": {
+        "node": true,
+        "browser": true,
+        "vue/setup-compiler-macros": true
+    }
+}
+
