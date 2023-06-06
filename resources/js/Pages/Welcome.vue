@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Head, Link } from '@inertiajs/vue3';
 import BrandLogo from '@/Components/BrandLogo.vue'
 
@@ -8,10 +9,46 @@ defineProps<{
     laravelVersion: string;
     phpVersion: string;
 }>();
+
+const currentRoute = route('welcome');
+
+const og = {
+    site: 'Automotriz Centeno',
+    title: 'Welcome | Automotriz Centeno',
+    description: 'Atendemos Ford, Toyota, Kia, Mazda, Nissan, Mitsubishi, Chevrolet, Honda, Hyundai.',
+    image: {
+        url: [currentRoute, '/og-image.jpg'].join(''),
+        mime: 'image/jpeg',
+        height: '1920',
+        width: '1080',
+    },
+    twitter: {
+        username: '@automotrizcenteno'
+    }
+}
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <Head title="Welcome">
+        <meta property="og:site_name" :content="og.site">
+        <meta property="og:url" :content="currentRoute" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" :content="og.title" />
+        <meta property="og:description" :content="og.description" />
+        <meta property="og:image:url" :content="og.image.url" />
+        <meta property="og:image:secure_url" :content="og.image.url" />
+        <meta property="og:image:type" :content="og.image.mime" />
+        <meta property="og:image:width" :content="og.image.height" />
+        <meta property="og:image:height" :content="og.image.width" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" :content="og.twitter.username" />
+        <meta property="twitter:title" :content="og.title" />
+        <meta property="twitter:description" :content="og.description" />
+        <meta property="twitter:image" :content="og.image.url" />
+
+        <title>Welcome</title>
+    </Head>
 
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white"
