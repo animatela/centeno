@@ -2,7 +2,7 @@
     "compilerOptions": {
         "allowJs": true,
         "module": "ESNext",
-        "moduleResolution": "bundler",
+        "moduleResolution": "Node",
         "jsx": "preserve",
         "strict": true,
         "isolatedModules": true,
