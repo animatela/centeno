@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('workshop_service_items', static function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('sort')->default(0);
-            $table->foreignId('shop_service_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('workshop_service_id')->nullable()->constrained()->cascadeOnDelete();
             $table->text('description');
             $table->integer('qty');
             $table->decimal('price', 10, 2);
