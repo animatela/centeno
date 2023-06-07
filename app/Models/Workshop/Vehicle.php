@@ -18,4 +18,9 @@ class Vehicle extends Model implements HasMedia
     protected $casts = [
         'is_visible' => 'boolean',
     ];
+
+    public function maker(): BelongsTo
+    {
+        return $this->belongsTo(Maker::class, 'workshop_maker_id');
+    }
 }
