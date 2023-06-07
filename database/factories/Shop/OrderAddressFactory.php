@@ -22,7 +22,7 @@ class OrderAddressFactory extends Factory
         return [
             'country' => strtolower(fake()->countryCode()),
             'street' => fake()->streetAddress(),
-            'state' => fake()->region(),
+            'state' => fake()->state(),
             'city' => fake()->city(),
             'zip' => fake()->postcode(),
         ];
