@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ServiceItemFactory extends Factory
 {
+    protected $model = ServiceItem::class;
+
     /**
      * Define the model's default state.
      *
