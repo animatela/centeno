@@ -25,11 +25,6 @@ class Reservation extends Model
         return $this->belongsTo(Service::class, 'workshop_service_id');
     }
 
-    public function customer(): BelongsTo
-    {
-        return $this->belongsTo(Customer::class, 'workshop_customer_id');
-    }
-
     public function vehicle(): BelongsTo
     {
         return $this->belongsTo(Service::class, 'workshop_vehicle_id');

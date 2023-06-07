@@ -13,7 +13,6 @@ return new class extends Migration {
         Schema::create('workshop_reservations', static function (Blueprint $table) {
             $table->id();
             $table->foreignId('workshop_service_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('workshop_customer_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('workshop_vehicle_id')->nullable()->constrained()->nullOnDelete();
             $table->string('number', 32)->unique();
             $table->string('currency')->nullable();
