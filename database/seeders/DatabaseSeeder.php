@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $seeds = [UserSeeder::class];
+        $seeds = [];
 
         if (app()->isLocal()) {
             $seeds[] = DemoSeeder::class;
