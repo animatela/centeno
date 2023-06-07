@@ -21,6 +21,7 @@ class FilamentServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Filament::registerNavigationGroups([
+            'Settings',
             'Workshop',
             'Shop',
             'Blog',
