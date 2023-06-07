@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Blog;
 
 use App\Filament\Resources\Blog\CategoryResource\Pages;
-use App\Filament\Resources\Blog\CategoryResource\RelationManagers;
 use App\Models\Blog\Category;
 use Filament\Forms;
 use Filament\Notifications\Notification;
@@ -11,8 +10,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 
 class CategoryResource extends Resource

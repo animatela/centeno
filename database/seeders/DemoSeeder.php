@@ -25,7 +25,7 @@ class DemoSeeder extends Seeder
         $this->deletePublicStorage();
 
         // Admin
-        $this->command->warn(PHP_EOL . 'Creating admin user...');
+        $this->command->warn(PHP_EOL.'Creating admin user...');
 
         $user = $this->withProgressBar(1, fn () => User::factory(1)->create([
             'name' => 'Admin',
@@ -36,7 +36,7 @@ class DemoSeeder extends Seeder
         $this->command->info('Admin user created.');
 
         // Blog
-        $this->command->warn(PHP_EOL . 'Creating blog categories...');
+        $this->command->warn(PHP_EOL.'Creating blog categories...');
 
         $blogCategories = $this->withProgressBar(
             20,
@@ -45,7 +45,7 @@ class DemoSeeder extends Seeder
 
         $this->command->info('Blog categories created.');
 
-        $this->command->warn(PHP_EOL . 'Creating blog authors and posts...');
+        $this->command->warn(PHP_EOL.'Creating blog authors and posts...');
 
         $this->withProgressBar(20, fn () => Author::factory(1)
             ->has(
@@ -83,7 +83,7 @@ class DemoSeeder extends Seeder
 
         $progress->start();
 
-        $items = new Collection();
+        $items = new Collection;
 
         for ($i = 0; $i < $amount; $i++) {
             $items = $items->concat(
