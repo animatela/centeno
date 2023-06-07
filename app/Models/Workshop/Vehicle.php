@@ -23,4 +23,9 @@ class Vehicle extends Model implements HasMedia
     {
         return $this->belongsTo(Maker::class, 'workshop_maker_id');
     }
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class, 'workshop_customer_id');
+    }
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('workshop_vehicles', static function (Blueprint $table) {
             $table->id();
             $table->foreignId('workshop_maker_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('workshop_customer_id')->nullable()->constrained()->nullOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('type')->nullable();
