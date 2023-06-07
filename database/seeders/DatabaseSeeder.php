@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'centeno@arcnet.dev',
-            'password' => bcrypt('password'),
-        ]);
+        $seeds = [UserSeeder::class];
 
-        \App\Models\User::factory(10)->create();
+        if (app()->isLocal()) {
+            $seeds[] = DemoSeeder::class;
+        }
+
+        $this->call($seeds);
     }
 }
