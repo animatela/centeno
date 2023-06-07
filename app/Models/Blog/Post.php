@@ -12,6 +12,13 @@ class Post extends Model
 
     protected $table = 'blog_posts';
 
+    /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'published_at' => 'date',
+    ];
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class, 'blog_author_id');
