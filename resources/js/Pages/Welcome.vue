@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
 import BrandLogo from '@/Components/BrandLogo.vue'
+import GlobalSearchForm from '@/Pages/Welcome/Partials/GlobalSearchForm.vue'
 
 defineProps<{
     canLogin?: boolean;
@@ -45,6 +46,10 @@ defineProps<{
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
             <div class="flex justify-center">
                 <BrandLogo class="h-44 w-auto fill-current text-slate-950 dark:text-white" />
+            </div>
+
+            <div class="mt-16">
+                <GlobalSearchForm />
             </div>
 
             <div class="mt-16">
