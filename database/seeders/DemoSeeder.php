@@ -54,22 +54,22 @@ class DemoSeeder extends Seeder
         $this->command->info('Admin user created.');
 
         // Workshop
-        $makers = $this->seedWorkshopMakers(20);
-        $customers = $this->seedWorkshopCustomers(100);
-        $vehicles = $this->seedWorkshopVehicles(20, $makers, $customers);
-        $services = $this->seedWorkshopServices(20);
-        $reservations = $this->seedWorkshopReservations(100, $services, $vehicles);
+        $workshopMakers = $this->seedWorkshopMakers(20);
+        $workshopCustomers = $this->seedWorkshopCustomers(10);
+        $workshopVehicles = $this->seedWorkshopVehicles(20, $workshopMakers, $workshopCustomers);
+        $workshopServices = $this->seedWorkshopServices(20);
+        $this->seedWorkshopReservations(100, $workshopServices, $workshopVehicles);
 
         // Shop
-        $brands = $this->seedShopBrands(20);
-        $categories = $this->seedShopCategories(20);
-        $customers = $this->seedShopCustomers(100);
-        $products = $this->seedShopProducts(50, $brands, $categories, $customers);
-        $this->seedShopOrders(100, $customers, $products);
+        $shopBrands = $this->seedShopBrands(20);
+        $shopCategories = $this->seedShopCategories(20);
+        $shopCustomers = $this->seedShopCustomers(10);
+        $shopProducts = $this->seedShopProducts(10, $shopBrands, $shopCategories, $shopCustomers);
+        $this->seedShopOrders(100, $shopCustomers, $shopProducts);
 
         // Blog
         $blogCategories = $this->seedBlogCategories(20);
-        $this->seedBlogAuthorsWithPosts(20, $customers, $blogCategories);
+        $this->seedBlogAuthorsWithPosts(20, $shopCustomers, $blogCategories);
     }
 
     protected function deletePublicStorage(): void
