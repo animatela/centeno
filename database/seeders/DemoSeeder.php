@@ -17,6 +17,7 @@ use App\Models\Shop\Product;
 use App\Models\User;
 use App\Models\Workshop\Customer as WorkshopCustomer;
 use App\Models\Workshop\Maker;
+use App\Models\Workshop\Reservation;
 use App\Models\Workshop\Service;
 use App\Models\Workshop\ServiceItem;
 use App\Models\Workshop\Vehicle;
@@ -183,7 +184,7 @@ class DemoSeeder extends Seeder
 
         $reservations = $this->withProgressBar(
             $amount,
-            fn () => Vehicle::factory(1)
+            fn () => Reservation::factory(1)
                 ->sequence(
                     fn ($sequence) => [
                         'workshop_service_id' => $services->random(1)->first()->id,
