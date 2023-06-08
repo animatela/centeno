@@ -49,13 +49,21 @@ class ReservationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('workshop_service_id'),
-                Tables\Columns\TextColumn::make('workshop_vehicle_id'),
+                Tables\Columns\TextColumn::make('service.name')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
+                //Tables\Columns\TextColumn::make('workshop_service_id'),
+                //Tables\Columns\TextColumn::make('workshop_vehicle_id'),
+                Tables\Columns\TextColumn::make('vehicle.plate')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('number'),
                 Tables\Columns\TextColumn::make('currency'),
                 Tables\Columns\TextColumn::make('price'),
                 Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('notes'),
+                //Tables\Columns\TextColumn::make('notes'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
