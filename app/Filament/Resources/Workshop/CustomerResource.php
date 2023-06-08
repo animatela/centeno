@@ -128,6 +128,7 @@ class CustomerResource extends Resource
     {
         return [
             RelationManagers\AddressesRelationManager::class,
+            RelationManagers\VehiclesRelationManager::class,
         ];
     }
 
