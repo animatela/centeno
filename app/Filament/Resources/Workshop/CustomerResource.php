@@ -104,21 +104,36 @@ class CustomerResource extends Resource
             ->filters([
                 //
             ])
+            ->headerActions([
+                Tables\Actions\AttachAction::make(),
+                Tables\Actions\CreateAction::make(),
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DetachAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
+                Tables\Actions\DetachBulkAction::make(),
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
+    public static function getEloquentQuery(): Builder
+    {
+        return
+            parent::getEloquentQuery()
+                ->with('addresses')
+                ->withoutGlobalScope(SoftDeletingScope::class);
+    }
+
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\AddressesRelationManager::class,
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -126,5 +141,10 @@ class CustomerResource extends Resource
             'create' => Pages\CreateCustomer::route('/create'),
             'edit' => Pages\EditCustomer::route('/{record}/edit'),
         ];
-    }    
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'email'];
+    }
 }
