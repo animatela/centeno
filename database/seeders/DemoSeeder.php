@@ -44,19 +44,12 @@ class DemoSeeder extends Seeder
         $this->deletePublicStorage();
 
         // Admin
-        $this->command->warn(PHP_EOL.'Creating admin user...');
-
-        $user = $this->withProgressBar(1, fn () => User::factory(1)->create([
-            'name' => 'Admin',
-            'email' => 'centeno@arcnet.dev',
-            'password' => bcrypt('password'),
-        ]));
-
-        $this->command->info('Admin user created.');
+        $admin = $this->seedAdmin();
+        $users = $this->seedUsersForWorkshopCustomers(20);
 
         // Workshop
         $workshopMakers = $this->seedWorkshopMakers(20);
-        $workshopCustomers = $this->seedWorkshopCustomers(10);
+        $workshopCustomers = $this->seedWorkshopCustomers(10, $users);
         $workshopVehicles = $this->seedWorkshopVehicles(20, $workshopMakers, $workshopCustomers);
         $workshopServices = $this->seedWorkshopServices(20);
         $this->seedWorkshopReservations(100, $workshopServices, $workshopVehicles);
@@ -109,6 +102,38 @@ class DemoSeeder extends Seeder
         return $items;
     }
 
+    protected function seedAdmin(): Collection
+    {
+        $this->command->warn(PHP_EOL.'Creating admin user...');
+
+        $admins = $this->withProgressBar(
+            1,
+            fn () => User::factory(1)->create([
+                'name' => 'Admin',
+                'email' => 'centeno@arcnet.dev',
+                'password' => bcrypt('password'),
+            ])
+        );
+
+        $this->command->info('Admin user created.');
+
+        return $admins;
+    }
+
+    protected function seedUsersForWorkshopCustomers(int $amount): Collection
+    {
+        $this->command->warn(PHP_EOL.'Creating users...');
+
+        $users = $this->withProgressBar(
+            $amount,
+            fn () => User::factory(1)->create()
+        );
+
+        $this->command->info('Users created.');
+
+        return $users;
+    }
+
     protected function seedWorkshopMakers(int $amount): Collection
     {
         $this->command->warn(PHP_EOL.'Creating workshop makers...');
@@ -125,7 +150,7 @@ class DemoSeeder extends Seeder
         return $makers;
     }
 
-    protected function seedWorkshopCustomers(int $amount): Collection
+    protected function seedWorkshopCustomers(int $amount, Collection $users): Collection
     {
         $this->command->warn(PHP_EOL.'Creating workshop customers...');
 
