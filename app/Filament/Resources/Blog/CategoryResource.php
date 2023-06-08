@@ -34,7 +34,8 @@ class CategoryResource extends Resource
                 ->maxValue(50)
                 ->lazy()
                 ->afterStateUpdated(
-                    fn (string $context, $state, callable $set) => $context === 'create' ? $set('slug', Str::slug($state)) : null),
+                    fn (string $context, $state, callable $set) => $context === 'create' ? $set('slug', Str::slug($state)) : null
+                ),
             Forms\Components\TextInput::make('slug')
                 ->disabled()
                 ->required()
