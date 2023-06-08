@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('workshop_maker_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('workshop_customer_id')->nullable()->constrained()->nullOnDelete();
             $table->string('name');
-            $table->string('slug')->unique();
             $table->string('type')->nullable();
             $table->string('model')->nullable();
             $table->integer('year')->nullable();

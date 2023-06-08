@@ -4,7 +4,6 @@ namespace Database\Factories\Workshop;
 
 use App\Models\Workshop\Vehicle;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Vehicle>
@@ -21,8 +20,7 @@ class VehicleFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $name = fake()->unique()->company(),
-            'slug' => Str::slug($name),
+            'name' => fake()->unique()->company(),
             'type' => fake()->unique()->word(),
             'model' => fake()->unique()->word(),
             'year' => fake()->year(),
