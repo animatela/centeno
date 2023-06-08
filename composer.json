@@ -20,6 +20,8 @@
         "laravel/framework": "^10.13",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "squirephp/countries-en": "^3.4",
+        "squirephp/countries-es": "^3.4",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
