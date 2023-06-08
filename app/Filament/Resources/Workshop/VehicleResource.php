@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class VehicleResource extends Resource
 {
+    protected static ?string $label = 'Vehículos';
+
     protected static ?string $model = Vehicle::class;
 
     protected static ?string $slug = 'workshop/vehicles';
