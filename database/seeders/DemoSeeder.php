@@ -131,9 +131,7 @@ class DemoSeeder extends Seeder
         $customers = $this->withProgressBar(
             $amount,
             fn () => WorkshopCustomer::factory(1)
-                ->has(
-                    Address::factory()->count(random_int(1, 3))
-                )
+                ->has(Address::factory()->count(random_int(1, 3)))
                 ->create()
         );
 
@@ -148,12 +146,14 @@ class DemoSeeder extends Seeder
 
         $vehicles = $this->withProgressBar(
             $amount,
-            fn () => Vehicle::factory(1)->sequence(
-                fn ($sequence) => [
-                    'workshop_maker_id' => $makers->random(1)->first()->id,
-                    'workshop_customer_id' => $customers->random(1)->first()->id,
-                ]
-            )
+            fn () => Vehicle::factory(1)
+                ->sequence(
+                    fn ($sequence) => [
+                        'workshop_maker_id' => $makers->random(1)->first()->id,
+                        'workshop_customer_id' => $customers->random(1)->first()->id,
+                    ]
+                )
+                ->create()
         );
 
         $this->command->info('Workshop vehicles created.');
@@ -165,14 +165,16 @@ class DemoSeeder extends Seeder
     {
         $this->command->warn(PHP_EOL.'Creating workshop services...');
 
-        $orders = $this->withProgressBar($amount, fn () => Service::factory(1)
-            ->has(ServiceItem::factory()->count(random_int(2, 5)), 'items')
-            ->create()
+        $services = $this->withProgressBar(
+            $amount,
+            fn () => Service::factory(1)
+                ->has(ServiceItem::factory()->count(random_int(2, 5)), 'items')
+                ->create()
         );
 
         $this->command->info('Workshop services created.');
 
-        return $orders;
+        return $services;
     }
 
     private function seedWorkshopReservations(int $amount, Collection $services, Collection $vehicles): Collection
@@ -181,12 +183,14 @@ class DemoSeeder extends Seeder
 
         $reservations = $this->withProgressBar(
             $amount,
-            fn () => Vehicle::factory(1)->sequence(
-                fn ($sequence) => [
-                    'workshop_service_id' => $services->random(1)->first()->id,
-                    'workshop_vehicle_id' => $vehicles->random(1)->first()->id,
-                ]
-            )
+            fn () => Vehicle::factory(1)
+                ->sequence(
+                    fn ($sequence) => [
+                        'workshop_service_id' => $services->random(1)->first()->id,
+                        'workshop_vehicle_id' => $vehicles->random(1)->first()->id,
+                    ]
+                )
+                ->create()
         );
 
         $this->command->info('Workshop reservations created.');
