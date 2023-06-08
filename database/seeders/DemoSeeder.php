@@ -148,12 +148,8 @@ class DemoSeeder extends Seeder
         $vehicles = $this->withProgressBar(
             $amount,
             fn () => Vehicle::factory(1)
-                ->sequence(
-                    fn ($sequence) => [
-                        'workshop_maker_id' => $makers->random(1)->first()->id,
-                        'workshop_customer_id' => $customers->random(1)->first()->id,
-                    ]
-                )
+                ->for($makers->random(1)->first())
+                ->for($customers->random(1)->first())
                 ->create()
         );
 
@@ -185,12 +181,8 @@ class DemoSeeder extends Seeder
         $reservations = $this->withProgressBar(
             $amount,
             fn () => Reservation::factory(1)
-                ->sequence(
-                    fn ($sequence) => [
-                        'workshop_service_id' => $services->random(1)->first()->id,
-                        'workshop_vehicle_id' => $vehicles->random(1)->first()->id,
-                    ]
-                )
+                ->for($services->random(1)->first())
+                ->for($vehicles->random(1)->first())
                 ->create()
         );
 
