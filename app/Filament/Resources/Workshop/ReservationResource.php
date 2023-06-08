@@ -55,11 +55,11 @@ class ReservationResource extends Resource
                     ->toggleable(),
                 //Tables\Columns\TextColumn::make('workshop_service_id'),
                 //Tables\Columns\TextColumn::make('workshop_vehicle_id'),
-                Tables\Columns\TextColumn::make('vehicle.plate')
+                Tables\Columns\TextColumn::make('vehicle.id')
                     ->searchable()
-                    ->sortable()
-                    ->toggleable(),
-                Tables\Columns\TextColumn::make('number'),
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('number')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('currency'),
                 Tables\Columns\TextColumn::make('price'),
                 Tables\Columns\TextColumn::make('status'),
