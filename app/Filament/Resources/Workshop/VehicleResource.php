@@ -69,36 +69,44 @@ class VehicleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('workshop_maker_id'),
-                Tables\Columns\TextColumn::make('workshop_customer_id'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\TextColumn::make('model'),
-                Tables\Columns\TextColumn::make('year'),
-                Tables\Columns\TextColumn::make('color'),
-                Tables\Columns\TextColumn::make('fuel_type'),
-                Tables\Columns\TextColumn::make('engine_size'),
-                Tables\Columns\TextColumn::make('transmission_type'),
-                Tables\Columns\TextColumn::make('vin'),
-                Tables\Columns\TextColumn::make('plate'),
-                Tables\Columns\TextColumn::make('mileage'),
+                //Tables\Columns\TextColumn::make('maker.name'),
+                Tables\Columns\TextColumn::make('customer.name')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                //Tables\Columns\TextColumn::make('slug'),
+                Tables\Columns\TextColumn::make('type')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('model')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('year')
+                    ->searchable()
+                    ->sortable(),
+                //Tables\Columns\TextColumn::make('color'),
+                //Tables\Columns\TextColumn::make('fuel_type'),
+                //Tables\Columns\TextColumn::make('engine_size'),
+                //Tables\Columns\TextColumn::make('transmission_type'),
+                //Tables\Columns\TextColumn::make('vin'),
+                //Tables\Columns\TextColumn::make('plate'),
+                //Tables\Columns\TextColumn::make('mileage'),
                 Tables\Columns\IconColumn::make('is_visible')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('seo_title'),
-                Tables\Columns\TextColumn::make('seo_description'),
-                Tables\Columns\TextColumn::make('sort'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                //Tables\Columns\TextColumn::make('seo_title'),
+                //Tables\Columns\TextColumn::make('seo_description'),
+                //Tables\Columns\TextColumn::make('sort'),
+                //Tables\Columns\TextColumn::make('created_at')->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')->date(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
