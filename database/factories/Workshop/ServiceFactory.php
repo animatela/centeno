@@ -4,6 +4,7 @@ namespace Database\Factories\Workshop;
 
 use App\Models\Workshop\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Service>
@@ -20,7 +21,8 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->sentence(),
+            'name' => $name = fake()->unique()->sentence(),
+            'slug' => Str::slug($name),
             'description' => fake()->realText(),
             'type' => fake()->word(),
             'is_visible' => fake()->boolean(),

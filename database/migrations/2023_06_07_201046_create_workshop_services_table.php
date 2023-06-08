@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('workshop_services', static function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->mediumText('description')->nullable();
             $table->string('type')->nullable();
             $table->unsignedSmallInteger('position')->default(0);
