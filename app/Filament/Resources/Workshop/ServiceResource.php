@@ -42,7 +42,7 @@ class ServiceResource extends Resource
                         fn (string $context, $state, callable $set) => $context === 'create' ? $set('slug', Str::slug($state)) : null
                     ),
 
-                Forms\Components\MarkdownEditor::make('slug')
+                Forms\Components\TextInput::make('slug')
                     ->disabled()
                     ->required()
                     ->unique(Service::class, 'slug', ignoreRecord: true),
@@ -50,8 +50,7 @@ class ServiceResource extends Resource
                 Forms\Components\MarkdownEditor::make('description')
                     ->columnSpan('full'),
 
-                Forms\Components\TextInput::make('type'),
-
+                //Forms\Components\TextInput::make('type'),
                 //Forms\Components\TextInput::make('position')->required(),
 
                 Forms\Components\Toggle::make('is_visible')
@@ -68,19 +67,22 @@ class ServiceResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\TextColumn::make('position'),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                //Tables\Columns\TextColumn::make('slug'),
+                //Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('type')
+                    ->searchable()
+                    ->sortable(),
+                //Tables\Columns\TextColumn::make('position'),
                 Tables\Columns\IconColumn::make('is_visible')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('seo_title'),
-                Tables\Columns\TextColumn::make('seo_description'),
-                Tables\Columns\TextColumn::make('sort'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                //Tables\Columns\TextColumn::make('seo_title'),
+                //Tables\Columns\TextColumn::make('seo_description'),
+                //Tables\Columns\TextColumn::make('sort'),
+                //Tables\Columns\TextColumn::make('created_at')->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')->date(),
             ])
             ->filters([
                 //
@@ -96,7 +98,7 @@ class ServiceResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ItemsRelationManager::class,
         ];
     }
 
