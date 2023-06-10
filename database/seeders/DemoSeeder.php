@@ -43,9 +43,9 @@ class DemoSeeder extends Seeder
 
         // Admin
         $admin = $this->seedAdmin();
-        $users = $this->seedUsersForWorkshopCustomers(10);
 
         // Workshop
+        $users = $this->seedUsersForWorkshopCustomers(10);
         $workshopMakers = $this->seedWorkshopMakers(10);
         $workshopCustomers = $this->seedWorkshopCustomers(10, $users);
         $workshopVehicles = $this->seedWorkshopVehicles(20, $workshopMakers, $workshopCustomers);
