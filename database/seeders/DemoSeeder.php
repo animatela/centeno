@@ -21,19 +21,17 @@ use App\Models\Workshop\Reservation;
 use App\Models\Workshop\Service;
 use App\Models\Workshop\ServiceItem;
 use App\Models\Workshop\Vehicle;
-use Closure;
+use App\Support\Traits\WithProgressBar;
 use Exception;
-use Filament\Notifications\Actions\Action;
-use Filament\Notifications\Notification;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\Console\Helper\ProgressBar;
 
 class DemoSeeder extends Seeder
 {
     use WithoutModelEvents;
+    use WithProgressBar;
 
     /**
      * Run the database seeds.
@@ -78,28 +76,6 @@ class DemoSeeder extends Seeder
                 Storage::delete($file);
             }
         }
-    }
-
-    protected function withProgressBar(int $amount, Closure $createCollectionOfOne): Collection
-    {
-        $output = $this->command->getOutput();
-        $progress = new ProgressBar($output, $amount);
-
-        $progress->start();
-
-        $items = new Collection;
-
-        for ($i = 0; $i < $amount; $i++) {
-            $items = $items->concat(
-                $createCollectionOfOne()
-            );
-            $progress->advance();
-        }
-
-        $progress->finish();
-        $output->writeln('');
-
-        return $items;
     }
 
     protected function seedAdmin(): Collection
