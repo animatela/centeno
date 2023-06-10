@@ -119,7 +119,7 @@ class DemoSeeder extends Seeder
         $makers = $this->withProgressBar(
             $amount,
             fn () => Maker::factory()->count($amount)
-                ->has(Address::factory()->count(random_int(1, 3)))
+                ->has(Address::factory()->count(1))
                 ->create()
         );
 
@@ -169,7 +169,7 @@ class DemoSeeder extends Seeder
         $services = $this->withProgressBar(
             $amount,
             fn () => Service::factory(1)
-                ->has(ServiceItem::factory()->count(random_int(2, 5)), 'items')
+                ->has(ServiceItem::factory()->count(2), 'items')
                 ->create()
         );
 
