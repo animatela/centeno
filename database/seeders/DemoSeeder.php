@@ -21,12 +21,12 @@ use App\Models\Workshop\Reservation;
 use App\Models\Workshop\Service;
 use App\Models\Workshop\ServiceItem;
 use App\Models\Workshop\Vehicle;
+use App\Support\PurgeStorageService;
 use App\Support\Traits\WithProgressBar;
 use Exception;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Storage;
 
 class DemoSeeder extends Seeder
 {
@@ -39,7 +39,7 @@ class DemoSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->deletePublicStorage();
+        PurgeStorageService::purge('public');
 
         // Admin
         $admin = $this->seedAdmin();
@@ -62,20 +62,6 @@ class DemoSeeder extends Seeder
         // Blog
         $blogCategories = $this->seedBlogCategories(20);
         $this->seedBlogAuthorsWithPosts(20, $shopCustomers, $blogCategories);
-    }
-
-    protected function deletePublicStorage(): void
-    {
-        $files = Storage::files('public');
-
-        foreach ($files as $file) {
-            $filename = pathinfo($file, PATHINFO_FILENAME);
-            $extension = pathinfo($file, PATHINFO_EXTENSION);
-
-            if ($extension !== 'gitignore' && ! str_starts_with($filename, '.')) {
-                Storage::delete($file);
-            }
-        }
     }
 
     protected function seedAdmin(): Collection
