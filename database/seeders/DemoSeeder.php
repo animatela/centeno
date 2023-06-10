@@ -133,7 +133,7 @@ class DemoSeeder extends Seeder
 
         $this->command->info('Users created.');
 
-        return $users;
+        return $users->reverse();
     }
 
     protected function seedWorkshopMakers(int $amount): Collection
@@ -159,6 +159,7 @@ class DemoSeeder extends Seeder
         $customers = $this->withProgressBar(
             $amount,
             fn () => WorkshopCustomer::factory(1)
+                ->for($users->pop())
                 ->has(Address::factory()->count(1))
                 ->create()
         );
