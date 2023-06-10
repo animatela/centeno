@@ -126,7 +126,9 @@ class DemoSeeder extends Seeder
 
         $users = $this->withProgressBar(
             $amount,
-            fn () => User::factory(1)->create()
+            fn () => User::factory(1)->create([
+                'password' => bcrypt('password'),
+            ])
         );
 
         $this->command->info('Users created.');
