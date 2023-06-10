@@ -157,7 +157,7 @@ class DemoSeeder extends Seeder
         $customers = $this->withProgressBar(
             $amount,
             fn () => WorkshopCustomer::factory(1)
-                ->has(Address::factory()->count(random_int(1, 3)))
+                ->has(Address::factory()->count(1))
                 ->create()
         );
 
