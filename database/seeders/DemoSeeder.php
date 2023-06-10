@@ -278,13 +278,6 @@ class DemoSeeder extends Seeder
         return $products;
     }
 
-    /**
-     * @param  int  $amount
-     * @param  Collection  $customers
-     * @param  Collection  $products
-     * @return void
-     * @throws Exception
-     */
     private function seedShopOrders(int $amount, Collection $customers, Collection $products): void
     {
         $this->command->warn(PHP_EOL.'Creating orders...');
