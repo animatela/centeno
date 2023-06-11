@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "147da25126d4ea6881c27959492ba78d",
+    "content-hash": "1aa9bc966d9e8b8c7d24bae2b9bc6612",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -2242,6 +2242,67 @@
                 }
             ],
             "time": "2022-05-21T17:30:32+00:00"
+        },
+        {
+            "name": "juststeveking/laravel-business-process",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JustSteveKing/laravel-business-process.git",
+                "reference": "a9bf4dfa666c33f49f775de1df0890982d177b9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JustSteveKing/laravel-business-process/zipball/a9bf4dfa666c33f49f775de1df0890982d177b9f",
+                "reference": "a9bf4dfa666c33f49f775de1df0890982d177b9f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.9",
+                "orchestra/testbench": "^8.5",
+                "pestphp/pest": "^2.5.2",
+                "phpstan/phpstan": "^1.10.14"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JustSteveKing\\BusinessProcess\\Providers\\PackageServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JustSteveKing\\BusinessProcess\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Steve McDougall",
+                    "email": "juststevemcd@gmail.com",
+                    "homepage": "https://www.juststeveking.uk/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Business Process is a simple and clean way to run business process using a Laravel Pipeline, in a structured and type-safe way.",
+            "support": {
+                "issues": "https://github.com/JustSteveKing/laravel-business-process/issues",
+                "source": "https://github.com/JustSteveKing/laravel-business-process/tree/0.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JustSteveKing",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-04-27T09:59:32+00:00"
         },
         {
             "name": "laravel/framework",
