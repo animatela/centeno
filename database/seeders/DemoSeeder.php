@@ -3,24 +3,24 @@
 namespace Database\Seeders;
 
 use App\Models\Address;
-use App\Models\Blog\Author;
+use App\Models\Blog\Author as BlogAuthor;
 use App\Models\Blog\Category as BlogCategory;
-use App\Models\Blog\Post;
+use App\Models\Blog\Post as BlogPost;
 use App\Models\Comment;
-use App\Models\Shop\Brand;
+use App\Models\Shop\Brand as ShopBrand;
 use App\Models\Shop\Category as ShopCategory;
 use App\Models\Shop\Customer as ShopCustomer;
-use App\Models\Shop\Order;
-use App\Models\Shop\OrderItem;
-use App\Models\Shop\Payment;
-use App\Models\Shop\Product;
+use App\Models\Shop\Order as ShopOrder;
+use App\Models\Shop\OrderItem as ShopOrderItem;
+use App\Models\Shop\Payment as ShopPayment;
+use App\Models\Shop\Product as ShopProduct;
 use App\Models\User;
 use App\Models\Workshop\Customer as WorkshopCustomer;
-use App\Models\Workshop\Maker;
-use App\Models\Workshop\Reservation;
-use App\Models\Workshop\Service;
-use App\Models\Workshop\ServiceItem;
-use App\Models\Workshop\Vehicle;
+use App\Models\Workshop\Maker as WorkshopMaker;
+use App\Models\Workshop\Reservation as WorkshopReservation;
+use App\Models\Workshop\Service as WorkshopService;
+use App\Models\Workshop\ServiceItem as WorkshopServiceItem;
+use App\Models\Workshop\Vehicle as WorkshopVehicle;
 use App\Support\PurgeStorageService;
 use App\Support\Traits\WithProgressBar;
 use Exception;
@@ -104,7 +104,7 @@ class DemoSeeder extends Seeder
 
         $makers = $this->withProgressBar(
             $amount,
-            fn () => Maker::factory()->count($amount)
+            fn () => WorkshopMaker::factory()->count($amount)
                 ->has(Address::factory()->count(1))
                 ->create()
         );
@@ -137,7 +137,7 @@ class DemoSeeder extends Seeder
 
         $vehicles = $this->withProgressBar(
             $amount,
-            fn () => Vehicle::factory(1)
+            fn () => WorkshopVehicle::factory(1)
                 ->for($makers->random(1)->first())
                 ->for($customers->random(1)->first())
                 ->create()
@@ -154,8 +154,8 @@ class DemoSeeder extends Seeder
 
         $services = $this->withProgressBar(
             $amount,
-            fn () => Service::factory(1)
-                ->has(ServiceItem::factory()->count(2), 'items')
+            fn () => WorkshopService::factory(1)
+                ->has(WorkshopServiceItem::factory()->count(2), 'items')
                 ->create()
         );
 
@@ -170,7 +170,7 @@ class DemoSeeder extends Seeder
 
         $reservations = $this->withProgressBar(
             $amount,
-            fn () => Reservation::factory(1)
+            fn () => WorkshopReservation::factory(1)
                 ->for($services->random(1)->first())
                 ->for($vehicles->random(1)->first())
                 ->create()
@@ -187,7 +187,7 @@ class DemoSeeder extends Seeder
 
         $brands = $this->withProgressBar(
             $amount,
-            fn () => Brand::factory()->count(20)
+            fn () => ShopBrand::factory()->count(20)
                 ->has(Address::factory()->count(random_int(1, 3)))
                 ->create()
         );
@@ -235,7 +235,7 @@ class DemoSeeder extends Seeder
 
         $products = $this->withProgressBar(
             $amount,
-            fn () => Product::factory(1)
+            fn () => ShopProduct::factory(1)
                 ->sequence(
                     fn ($sequence) => [
                         'shop_brand_id' => $brands->random(1)->first()->id,
@@ -251,7 +251,7 @@ class DemoSeeder extends Seeder
                 ->has(
                     Comment::factory()->count(random_int(10, 20))
                         ->state(
-                            fn (array $attributes, Product $product) => [
+                            fn (array $attributes, ShopProduct $product) => [
                                 'customer_id' => $customers->random(1)->first()->id,
                             ]
                         ),
@@ -268,17 +268,17 @@ class DemoSeeder extends Seeder
     {
         $this->command->warn(PHP_EOL.'Creating orders...');
 
-        $orders = $this->withProgressBar($amount, fn () => Order::factory(1)
+        $orders = $this->withProgressBar($amount, fn () => ShopOrder::factory(1)
             ->sequence(
                 fn ($sequence) => [
                     'shop_customer_id' => $customers->random(1)->first()->id,
                 ]
             )
-            ->has(Payment::factory()->count(random_int(1, 3)))
+            ->has(ShopPayment::factory()->count(random_int(1, 3)))
             ->has(
-                OrderItem::factory()->count(random_int(2, 5))
+                ShopOrderItem::factory()->count(random_int(2, 5))
                     ->state(
-                        fn (array $attributes, Order $order) => [
+                        fn (array $attributes, ShopOrder $order) => [
                             'shop_product_id' => $products->random(1)->first()->id,
                         ]
                     ),
@@ -320,18 +320,18 @@ class DemoSeeder extends Seeder
         $this->command->warn(PHP_EOL.'Creating blog authors and posts...');
 
         $this->withProgressBar(
-            $amount, fn () => Author::factory(1)
+            $amount, fn () => BlogAuthor::factory(1)
             ->has(
-                Post::factory()->count(5)
+                BlogPost::factory()->count(5)
                     ->has(
                         Comment::factory()->count(random_int(5, 10))->state(
-                            fn (array $attributes, Post $post) => [
+                            fn (array $attributes, BlogPost $post) => [
                                 'customer_id' => $customers->random(1)->first()->id,
                             ]
                         ),
                     )
                     ->state(
-                        fn (array $attributes, Author $author) => [
+                        fn (array $attributes, BlogAuthor $author) => [
                             'blog_category_id' => $blogCategories->random(1)->first()->id,
                         ]
                     ),
