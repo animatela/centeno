@@ -45,9 +45,9 @@ class DemoSeeder extends Seeder
         $admin = $this->seedAdmin();
 
         // Workshop
-        $users = $this->seedUsersForWorkshopCustomers(10);
+        $workshopUsers = $this->seedUsersForWorkshopCustomers(10);
         $workshopMakers = $this->seedWorkshopMakers(10);
-        $workshopCustomers = $this->seedWorkshopCustomers(10, $users);
+        $workshopCustomers = $this->seedWorkshopCustomers(10, $workshopUsers);
         $workshopVehicles = $this->seedWorkshopVehicles(20, $workshopMakers, $workshopCustomers);
         $workshopServices = $this->seedWorkshopServices(20);
         $this->seedWorkshopReservations(100, $workshopServices, $workshopVehicles);
@@ -315,7 +315,7 @@ class DemoSeeder extends Seeder
         return $blogCategories;
     }
 
-    private function seedBlogAuthorsWithPosts(int $amount, Collection $customers, Collection $blogCategories): void
+    private function seedBlogAuthorsWithPosts(int $amount, Collection $customers, Collection $categories): void
     {
         $this->command->warn(PHP_EOL.'Creating blog authors and posts...');
 
@@ -332,7 +332,7 @@ class DemoSeeder extends Seeder
                     )
                     ->state(
                         fn (array $attributes, BlogAuthor $author) => [
-                            'blog_category_id' => $blogCategories->random(1)->first()->id,
+                            'blog_category_id' => $categories->random(1)->first()->id,
                         ]
                     ),
                 'posts'
