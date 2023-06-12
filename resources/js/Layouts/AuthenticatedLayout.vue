@@ -7,6 +7,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import OnNotification from '@/Components/Notifications/OnNotification.vue'
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -149,5 +150,8 @@ const showingNavigationDropdown = ref(false);
                 <slot />
             </main>
         </div>
+
+        <!-- Notifications -->
+        <OnNotification />
     </div>
 </template>
