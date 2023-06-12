@@ -16,4 +16,10 @@ return [
         'female' => 'Female',
         'other' => 'Other',
     ],
+
+    'document_type' => [
+        'dni' => 'National ID',
+        'ruc' => 'Taxpayer Identification Number',
+        'ce' => 'Immigration Card',
+    ],
 ];
