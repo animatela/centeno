@@ -17,7 +17,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', WelcomeController::class);
+Route::get('/', WelcomeController::class)->name('welcome');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
