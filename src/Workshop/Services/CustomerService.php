@@ -61,7 +61,7 @@ final class CustomerService
         );
     }
 
-    public function destroy(int $id): int
+    public function forceDelete(int $id): int
     {
         return $this->destroyCustomer->handle(
             $id
