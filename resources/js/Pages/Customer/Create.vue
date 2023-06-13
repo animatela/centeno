@@ -1,21 +1,20 @@
 <script setup lang="ts">
+import { watchEffect } from 'vue'
 import { Head } from '@inertiajs/vue3'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-import UpdateCustomerForm from './Partials/UpdateCustomerForm.vue'
+import CreateCustomerForm from '@/Pages/Customer/Partials/CreateCustomerForm.vue'
 
-interface Props {
-    customer?: Workshop.Customer
-    genders: Array<HtmlForm.Option>
-    document_types: Array<HtmlForm.Option>
-}
-
-const props = defineProps<Props>()
+const props = defineProps<{
+    customer?: Workshop.Customer;
+    genders: Array<HtmlForm.Option>;
+    document_types: Array<HtmlForm.Option>;
+}>();
 </script>
 
 <template>
-    <Head title="Customer">
-        <title>Actualizar Información de Cliente</title>
+    <Head title="Customer" >
+        <title>Crear Información de Cliente</title>
     </Head>
 
     <AuthenticatedLayout>
@@ -28,7 +27,7 @@ const props = defineProps<Props>()
         <div v-if="genders" class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <UpdateCustomerForm
+                    <CreateCustomerForm
                         :customer="customer"
                         :document_types="document_types"
                         :genders="genders"
