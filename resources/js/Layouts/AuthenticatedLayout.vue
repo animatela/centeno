@@ -34,6 +34,13 @@ const toggleNavigationDropdown = () => showingNavigationDropdown.value = !showin
                 </div>
             </header>
 
+            <!-- Flash Messages -->
+            <section>
+                <div v-if="$page.props.flash.message" class="alert">
+                    {{ $page.props.flash.message }}
+                </div>
+            </section>
+
             <!-- Page Content -->
             <main>
                 <slot />
