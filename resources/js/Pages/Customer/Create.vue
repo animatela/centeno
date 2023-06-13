@@ -6,7 +6,6 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 import CreateCustomerForm from '@/Pages/Customer/Partials/CreateCustomerForm.vue'
 
 const props = defineProps<{
-    customer?: Workshop.Customer;
     genders: Array<HtmlForm.Option>;
     document_types: Array<HtmlForm.Option>;
 }>();
@@ -28,7 +27,6 @@ const props = defineProps<{
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                     <CreateCustomerForm
-                        :customer="customer"
                         :document_types="document_types"
                         :genders="genders"
                         class="max-w-xl"

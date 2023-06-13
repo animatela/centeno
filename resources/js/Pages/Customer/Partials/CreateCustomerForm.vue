@@ -11,7 +11,6 @@ import TextInput from '@/Components/TextInput.vue';
 import { useNotification } from '@/Composables/useNotification'
 
 interface Props {
-    customer?: Workshop.Customer;
     genders: Array<HtmlForm.Option>;
     document_types: Array<HtmlForm.Option>;
 }

@@ -1,17 +1,18 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useForm, usePage } from '@inertiajs/vue3'
 
 import { User } from '@/types'
+import { useNotification } from '@/Composables/useNotification'
 
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SelectInput from '@/Components/SelectInput.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { useNotification } from '@/Composables/useNotification'
 
 interface Props {
-    customer?: Workshop.Customer;
+    customer: Workshop.Customer;
     genders: Array<HtmlForm.Option>;
     document_types: Array<HtmlForm.Option>;
 }
@@ -23,16 +24,18 @@ const user: User = usePage().props.auth.user;
 const { showSuccessMessage } = useNotification()
 
 const form = useForm({
-    name: props.customer?.name || '',
-    email: props.customer?.email || '',
-    phone: props.customer?.phone || '',
-    gender: props.customer?.gender || '',
-    document_type: props.customer?.document_type || '',
-    document_number: props.customer?.document_number || '',
+    name: props.customer.name || '',
+    email: props.customer.email || '',
+    phone: props.customer.phone || '',
+    gender: props.customer.gender || '',
+    document_type: props.customer.document_type || '',
+    document_number: props.customer.document_number || '',
 });
 
+const customerId = computed(() => props.customer.id)
+
 const updateCustomer = () => {
-     form.patch(route('customer.update', { id: props.customer?.id.toString() }), {
+    form.patch(route('customer.update', { id: customerId.value }), {
         preserveScroll: true,
         onSuccess: () => showSuccessMessage('Success', 'Your information was updated!')
     })
