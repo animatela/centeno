@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerInformationController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
