@@ -14,8 +14,6 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-
-const vehicleId = computed(() => props.vehicle?.id.toString())
 </script>
 
 <template>
@@ -45,8 +43,8 @@ const vehicleId = computed(() => props.vehicle?.id.toString())
                     </div>
                     <div class="mx-1 text-gray-400">/</div>
                     <div aria-current="page">
-                        <div class="flex items-center">
-                            <BreadcrumbButton :href="route('vehicles.edit', { id: vehicleId })" current>
+                        <div v-if="vehicle" class="flex items-center">
+                            <BreadcrumbButton :href="route('vehicles.edit', { id: vehicle.id })" current>
                                 <span>{{ vehicle.name }}</span>
                             </BreadcrumbButton>
                         </div>
