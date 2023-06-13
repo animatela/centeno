@@ -80,6 +80,9 @@ class VehicleController extends Controller
      */
     public function destroy(Request $request, int $id): RedirectResponse
     {
+        $request->validate([
+            'password' => ['required', 'current_password'],
+        ]);
 
         if ($request->has('force')) {
             $this->vehicleRepository->forceDelete($id);
@@ -87,6 +90,6 @@ class VehicleController extends Controller
 
         $this->vehicleRepository->delete($id);
 
-        return Redirect::route('vehicles.edit');
+        return Redirect::route('vehicles');
     }
 }

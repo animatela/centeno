@@ -3,8 +3,9 @@ import { computed } from 'vue'
 import { Head } from '@inertiajs/vue3'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-import UpdateVehicleForm from './Partials/UpdateVehicleForm.vue'
 import BreadcrumbButton from '@/Components/BreadcrumbButton.vue'
+import UpdateVehicleForm from './Partials/UpdateVehicleForm.vue'
+import DeleteVehicleForm from './Partials/DeleteVehicleForm.vue'
 
 interface Props {
     vehicle?: Workshop.Vehicle
@@ -63,6 +64,10 @@ const vehicleId = computed(() => props.vehicle?.id.toString())
                         :transmission-types="transmissionTypes"
                         class="max-w-xl"
                     />
+                </div>
+
+                <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                    <DeleteVehicleForm :vehicle-id="vehicle.id" class="max-w-xl" />
                 </div>
             </div>
         </div>
