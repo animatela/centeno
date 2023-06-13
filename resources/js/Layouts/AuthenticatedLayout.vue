@@ -3,9 +3,6 @@ import { ref } from 'vue';
 import OnNotification from '@/Components/Notifications/OnNotification.vue'
 import PrimaryNavigationMenu from '@/Components/Navigation/PrimaryNavigationMenu.vue'
 import ResponsiveNavigationMenu from '@/Components/Navigation/ResponsiveNavigationMenu.vue'
-import { usePage } from '@inertiajs/vue3'
-
-const flashMessages: string = usePage().props.flash.message
 
 const showingNavigationDropdown = ref(false)
 
@@ -34,13 +31,6 @@ const toggleNavigationDropdown = () => showingNavigationDropdown.value = !showin
                     <slot name="header" />
                 </div>
             </header>
-
-            <!-- Flash Messages -->
-            <section>
-                <div v-if="flashMessages" class="alert">
-                    {{ flashMessages }}
-                </div>
-            </section>
 
             <!-- Page Content -->
             <main>
