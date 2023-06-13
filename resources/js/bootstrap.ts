@@ -4,9 +4,19 @@
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-import axios from 'axios';
-window.axios = axios;
+import axios, { AxiosInstance } from 'axios';
+import { useAxiosInterceptor } from '@/Composables/useAxiosInterceptor'
 
+const { onRequest, onResponse, onErrorResponse } = useAxiosInterceptor()
+
+const setupInterceptors = (instance: AxiosInstance): AxiosInstance => {
+    instance.interceptors.request.use(onRequest, onErrorResponse);
+    instance.interceptors.response.use(onResponse, onErrorResponse);
+
+    return instance;
+}
+
+window.axios = setupInterceptors(axios.create());
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
