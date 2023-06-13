@@ -5,13 +5,13 @@ import { Head, Link } from '@inertiajs/vue3'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 interface Props {
-    hasCustomer: boolean;
+    canMakeReservation: boolean;
 }
 
 const props = defineProps<Props>()
 
 const customerRoute = computed(() =>
-    props.hasCustomer
+    props.canMakeReservation
         ? route('customer.edit')
         : route('customer.create')
 )
@@ -44,7 +44,7 @@ const customerRoute = computed(() =>
                     </Link>
 
                     <Link
-                        v-if="hasCustomer"
+                        v-if="canMakeReservation"
                         href="#"
                         class="flex flex-col max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                     >
@@ -55,7 +55,7 @@ const customerRoute = computed(() =>
                     </Link>
 
                     <Link
-                        v-if="hasCustomer"
+                        v-if="canMakeReservation"
                         href="#"
                         class="flex flex-col max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                     >
