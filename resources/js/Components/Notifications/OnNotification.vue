@@ -12,7 +12,7 @@ import OnNotificationSuccess from '@/Components/Notifications/OnNotificationSucc
 <template>
     <div>
         <NotificationGroup :group="NotifyGroupId.Info">
-            <div class="fixed inset-x-0 bottom-0 right-4 flex items-start justify-end p-6 px-4 py-6 pointer-events-none">
+            <div class="fixed inset-0 flex items-start justify-end px-4 py-6 mt-28 pointer-events-none">
                 <div class="w-full max-w-sm">
                     <OnNotificationDefault />
                 </div>
@@ -20,7 +20,7 @@ import OnNotificationSuccess from '@/Components/Notifications/OnNotificationSucc
         </NotificationGroup>
 
         <NotificationGroup :group="NotifyGroupId.Success">
-            <div class="fixed inset-x-0 bottom-0 right-4 flex items-start justify-end p-6 px-4 py-6 pointer-events-none">
+            <div class="fixed inset-0 flex items-start justify-end px-4 py-6 mt-28 pointer-events-none">
                 <div class="w-full max-w-sm">
                     <OnNotificationSuccess />
                 </div>
@@ -28,7 +28,7 @@ import OnNotificationSuccess from '@/Components/Notifications/OnNotificationSucc
         </NotificationGroup>
 
         <NotificationGroup :group="NotifyGroupId.Warning">
-            <div class="fixed inset-x-0 bottom-0 right-4 flex items-start justify-end p-6 px-4 py-6 pointer-events-none">
+            <div class="fixed inset-0 flex items-start justify-end px-4 py-6 mt-28 pointer-events-none">
                 <div class="w-full max-w-sm">
                     <OnNotificationWarning />
                 </div>
@@ -36,7 +36,7 @@ import OnNotificationSuccess from '@/Components/Notifications/OnNotificationSucc
         </NotificationGroup>
 
         <NotificationGroup :group="NotifyGroupId.Failed">
-            <div class="fixed inset-x-0 bottom-0 right-4 flex items-start justify-end p-6 px-4 py-6 pointer-events-none">
+            <div class="fixed inset-0 flex items-start justify-end px-4 py-6 mt-28 pointer-events-none">
                 <div class="w-full max-w-sm">
                     <OnNotificationFailed />
                 </div>
