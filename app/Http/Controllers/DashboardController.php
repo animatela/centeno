@@ -10,6 +10,8 @@ class DashboardController extends Controller
 {
     public function __invoke(Request $request): Response
     {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', [
+            'hasCustomer' => (bool) $request->user()->customer,
+        ]);
     }
 }
