@@ -15,7 +15,7 @@ interface UseNotification {
 }
 
 export const useNotification = (timeout?: number): UseNotification => {
-    const ms: number = timeout || 14000
+    const ms: number = timeout || 4000
 
     const showFailedMessage = (title: string, text: string): void => {
         notify({ group: NotifyGroupId.Failed, title, text }, ms)

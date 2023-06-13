@@ -10,7 +10,7 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    protected $table = 'workshop_reservations';
+    protected $table = 'reservations';
 
     protected $fillable = [
         'number',
@@ -22,11 +22,11 @@ class Reservation extends Model
 
     public function service(): BelongsTo
     {
-        return $this->belongsTo(Service::class, 'workshop_service_id');
+        return $this->belongsTo(Service::class, 'service_id');
     }
 
     public function vehicle(): BelongsTo
     {
-        return $this->belongsTo(Service::class, 'workshop_vehicle_id');
+        return $this->belongsTo(Service::class, 'vehicle_id');
     }
 }

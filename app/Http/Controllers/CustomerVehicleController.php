@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Idat\Centeno\Workshop\Services\VehicleService;
+use Idat\Centeno\Workshop\Repositories\VehicleRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -10,7 +10,7 @@ use Inertia\Response;
 class CustomerVehicleController extends Controller
 {
     public function __construct(
-        private readonly VehicleService $vehicleService,
+        private readonly VehicleRepository $vehicleService,
     ) {}
 
     /**

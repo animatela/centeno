@@ -17,11 +17,13 @@ declare namespace Workshop {
     }
 
     export interface Vehicle {
+        id: number
         name: string
         body_type?: string
+        maker?: string
         model?: string
-        year?: string
         color?: number
+        year?: string
         fuel_type?: string
         transmission_type?: number
         plate?: string

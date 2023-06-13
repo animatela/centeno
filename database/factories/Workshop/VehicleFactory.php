@@ -28,7 +28,6 @@ class VehicleFactory extends Factory
             'color' => fake()->colorName(),
             'plate' => fake()->regexify('[A-Z0-9]{3}-[0-9]{3}'),
             'mileage' => fake()->randomNumber(8),
-            'is_visible' => fake()->boolean(),
         ];
     }
 }

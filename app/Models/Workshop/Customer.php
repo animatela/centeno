@@ -14,7 +14,7 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $table = 'workshop_customers';
+    protected $table = 'customers';
 
     public function user(): BelongsTo
     {
@@ -28,6 +28,6 @@ class Customer extends Model
 
     public function vehicles(): HasMany
     {
-        return $this->hasMany(Vehicle::class, 'workshop_customer_id');
+        return $this->hasMany(Vehicle::class, 'customer_id');
     }
 }

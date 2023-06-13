@@ -13,11 +13,11 @@ class Service extends Model
     /**
      * @var string
      */
-    protected $table = 'workshop_services';
+    protected $table = 'services';
 
 
     public function items(): HasMany
     {
-        return $this->hasMany(ServiceItem::class, 'workshop_service_id');
+        return $this->hasMany(ServiceItem::class, 'service_id');
     }
 }

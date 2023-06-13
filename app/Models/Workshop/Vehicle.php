@@ -2,9 +2,12 @@
 
 namespace App\Models\Workshop;
 
+use Idat\Centeno\Workshop\Enums\FuelType;
+use Idat\Centeno\Workshop\Enums\TransmissionType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -12,20 +15,17 @@ class Vehicle extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
+    use SoftDeletes;
 
-    protected $table = 'workshop_vehicles';
+    protected $table = 'vehicles';
 
     protected $casts = [
-        'is_visible' => 'boolean',
+        'fuel_type' => FuelType::class,
+        'transmission_type' => TransmissionType::class,
     ];
-
-    public function maker(): BelongsTo
-    {
-        return $this->belongsTo(Maker::class, 'workshop_maker_id');
-    }
 
     public function customer(): BelongsTo
     {
-        return $this->belongsTo(Customer::class, 'workshop_customer_id');
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 }

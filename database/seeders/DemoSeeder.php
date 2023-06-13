@@ -15,6 +15,7 @@ use Exception;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DemoSeeder extends Seeder
 {
@@ -62,9 +63,14 @@ class DemoSeeder extends Seeder
     {
         $this->command->warn(PHP_EOL.'Creating users...');
 
+        $emails = collect(range(1, 10))->mapWithKeys(
+            fn ($number) => [$number => 'customer_'.Str::padLeft($number, 2, 0).'@example.com']
+        )->reverse();
+
         $users = $this->withProgressBar(
             $amount,
             fn () => User::factory(1)->create([
+                'email' => $emails->pop(),
                 'password' => bcrypt('password'),
             ])
         );

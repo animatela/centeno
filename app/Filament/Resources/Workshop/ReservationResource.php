@@ -33,8 +33,8 @@ class ReservationResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('workshop_service_id'),
-                Forms\Components\TextInput::make('workshop_vehicle_id'),
+                Forms\Components\TextInput::make('service_id'),
+                Forms\Components\TextInput::make('vehicle_id'),
                 Forms\Components\TextInput::make('number')
                     ->required(),
                 Forms\Components\TextInput::make('currency'),
@@ -53,8 +53,8 @@ class ReservationResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->toggleable(),
-                //Tables\Columns\TextColumn::make('workshop_service_id'),
-                //Tables\Columns\TextColumn::make('workshop_vehicle_id'),
+                //Tables\Columns\TextColumn::make('service_id'),
+                //Tables\Columns\TextColumn::make('vehicle_id'),
                 Tables\Columns\TextColumn::make('vehicle.id')
                     ->searchable()
                     ->sortable(),

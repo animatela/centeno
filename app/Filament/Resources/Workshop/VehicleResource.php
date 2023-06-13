@@ -33,8 +33,8 @@ class VehicleResource extends Resource
     {
         return $form
             ->schema([
-                //Forms\Components\TextInput::make('workshop_maker_id'),
-                //Forms\Components\TextInput::make('workshop_customer_id'),
+                //Forms\Components\TextInput::make('maker_id'),
+                //Forms\Components\TextInput::make('customer_id'),
                 Forms\Components\TextInput::make('name')
                     ->maxValue(100)
                     ->required(),

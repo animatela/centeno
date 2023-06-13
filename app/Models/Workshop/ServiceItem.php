@@ -12,5 +12,5 @@ class ServiceItem extends Model
     /**
      * @var string
      */
-    protected $table = 'workshop_service_items';
+    protected $table = 'service_items';
 }

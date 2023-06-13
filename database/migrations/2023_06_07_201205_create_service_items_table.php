@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workshop_service_items', static function (Blueprint $table) {
+        Schema::create('service_items', static function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('sort')->default(0);
-            $table->foreignId('workshop_service_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('service_id')->nullable()->constrained()->cascadeOnDelete();
             $table->text('description');
             $table->integer('qty');
             $table->decimal('price', 10, 2);
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workshop_service_items');
+        Schema::dropIfExists('service_items');
     }
 };

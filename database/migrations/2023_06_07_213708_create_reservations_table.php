@@ -10,10 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('workshop_reservations', static function (Blueprint $table) {
+        Schema::create('reservations', static function (Blueprint $table) {
             $table->id();
-            $table->foreignId('workshop_service_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('workshop_vehicle_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('service_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('vehicle_id')->nullable()->constrained()->nullOnDelete();
             $table->string('number', 32)->unique();
             $table->string('currency')->nullable();
             $table->decimal('price', 12, 2)->nullable();
@@ -29,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('workshop_reservations');
+        Schema::dropIfExists('reservations');
     }
 };

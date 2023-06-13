@@ -55,7 +55,6 @@ class CustomerInformationController extends Controller
         );
 
         return Inertia::render('Customer/Edit', [
-            'status' => 503,
             'customer' => $customer,
             'genders' => Gender::asSelectArray(),
             'document_types' => DocumentType::asSelectArray(),

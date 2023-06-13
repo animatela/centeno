@@ -1,9 +1,8 @@
 <?php
 
-namespace Idat\Centeno\Workshop\Commands\Services;
+namespace Idat\Centeno\Workshop\Commands\Vehicles;
 
 use App\Models\Workshop\Vehicle;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +13,7 @@ final class ListVehicles
         $query = Vehicle::query();
 
         if ($customerId) {
-            $query->where('workshop_customer_id', $customerId);
+            $query->where('customer_id', $customerId);
         }
 
         return DB::transaction(
