@@ -46,22 +46,21 @@ class DemoSeeder extends Seeder
 
         // Workshop
         $workshopUsers = $this->seedUsersForWorkshopCustomers(10);
-        $workshopMakers = $this->seedWorkshopMakers(10);
         $workshopCustomers = $this->seedWorkshopCustomers(10, $workshopUsers);
-        $workshopVehicles = $this->seedWorkshopVehicles(20, $workshopMakers, $workshopCustomers);
+        $workshopVehicles = $this->seedWorkshopVehicles(20, $workshopCustomers);
         $workshopServices = $this->seedWorkshopServices(20);
         $this->seedWorkshopReservations(100, $workshopServices, $workshopVehicles);
 
         // Shop
-        $shopBrands = $this->seedShopBrands(20);
-        $shopCategories = $this->seedShopCategories(20);
-        $shopCustomers = $this->seedShopCustomers(10);
-        $shopProducts = $this->seedShopProducts(10, $shopBrands, $shopCategories, $shopCustomers);
-        $this->seedShopOrders(100, $shopCustomers, $shopProducts);
+        //$shopBrands = $this->seedShopBrands(20);
+        //$shopCategories = $this->seedShopCategories(20);
+        //$shopCustomers = $this->seedShopCustomers(10);
+        //$shopProducts = $this->seedShopProducts(10, $shopBrands, $shopCategories, $shopCustomers);
+        //$this->seedShopOrders(100, $shopCustomers, $shopProducts);
 
         // Blog
-        $blogCategories = $this->seedBlogCategories(20);
-        $this->seedBlogAuthorsWithPosts(20, $shopCustomers, $blogCategories);
+        //$blogCategories = $this->seedBlogCategories(20);
+        //$this->seedBlogAuthorsWithPosts(20, $shopCustomers, $blogCategories);
     }
 
     protected function seedAdmin(): Collection
@@ -131,14 +130,13 @@ class DemoSeeder extends Seeder
         return $customers;
     }
 
-    protected function seedWorkshopVehicles(int $amount, Collection $makers, Collection $customers): Collection
+    protected function seedWorkshopVehicles(int $amount, Collection $customers): Collection
     {
         $this->command->warn(PHP_EOL.'Creating workshop vehicles...');
 
         $vehicles = $this->withProgressBar(
             $amount,
             fn () => WorkshopVehicle::factory(1)
-                ->for($makers->random(1)->first())
                 ->for($customers->random(1)->first())
                 ->create()
         );

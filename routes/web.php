@@ -3,9 +3,9 @@
 use App\Http\Controllers\CustomerInformationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/customer', [CustomerInformationController::class, 'store'])->name('customer.store');
     Route::get('/customer/edit', [CustomerInformationController::class, 'edit'])->name('customer.edit');
     Route::patch('/customer/{id}', [CustomerInformationController::class, 'update'])->name('customer.update');
+
+    Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles');
 });
 
 require __DIR__.'/auth.php';

@@ -13,22 +13,18 @@ return new class extends Migration
     {
         Schema::create('workshop_vehicles', static function (Blueprint $table) {
             $table->id();
-            $table->foreignId('workshop_maker_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('workshop_customer_id')->nullable()->constrained()->nullOnDelete();
             $table->string('name');
-            $table->string('type')->nullable();
+            $table->string('body_type')->nullable();
+            $table->string('maker')->nullable();
             $table->string('model')->nullable();
             $table->integer('year')->nullable();
             $table->string('color')->nullable();
-            $table->string('fuel_type')->nullable();
-            $table->float('engine_size')->nullable();
-            $table->string('transmission_type')->nullable();
-            $table->string('vin')->unique()->nullable();
+            $table->enum('fuel_type', ['diesel', 'gasoline', 'glp', 'gnv', 'dual', 'electric'])->nullable();
+            $table->enum('transmission_type', ['mt', 'at'])->nullable();
             $table->string('plate')->nullable();
             $table->unsignedBigInteger('mileage')->default(0);
             $table->boolean('is_visible')->default(false);
-            $table->string('seo_title', 60)->nullable();
-            $table->string('seo_description', 160)->nullable();
             $table->integer('sort')->nullable();
             $table->timestamps();
         });

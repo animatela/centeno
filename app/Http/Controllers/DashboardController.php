@@ -12,6 +12,7 @@ class DashboardController extends Controller
     {
         return Inertia::render('Dashboard', [
             'canMakeReservation' => (bool) $request->user()->customer,
+            'customerId' => $request->user()->customer?->id,
         ]);
     }
 }

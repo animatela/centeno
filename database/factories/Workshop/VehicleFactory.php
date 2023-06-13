@@ -21,7 +21,8 @@ class VehicleFactory extends Factory
     {
         return [
             'name' => fake()->unique()->company(),
-            'type' => fake()->unique()->word(),
+            'body_type' => fake()->unique()->word(),
+            'maker' => fake()->unique()->word(),
             'model' => fake()->unique()->word(),
             'year' => fake()->year(),
             'color' => fake()->colorName(),

@@ -19,6 +19,9 @@ const user: User = usePage().props.auth.user
             <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                 Dashboard
             </ResponsiveNavLink>
+            <ResponsiveNavLink :href="route('vehicles')" :active="route().current('vehicles')">
+                Mis Vehículos
+            </ResponsiveNavLink>
         </div>
 
         <!-- Responsive Settings Options -->

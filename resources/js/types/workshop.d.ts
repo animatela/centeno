@@ -15,4 +15,18 @@ declare namespace Workshop {
 
         user_id?: number
     }
+
+    export interface Vehicle {
+        name: string
+        body_type?: string
+        model?: string
+        year?: string
+        color?: number
+        fuel_type?: string
+        transmission_type?: number
+        plate?: string
+        mileage?: string
+        is_visible?: number
+        sort?: string
+    }
 }
