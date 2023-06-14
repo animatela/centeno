@@ -13,7 +13,7 @@ use Idat\Centeno\Workshop\Objects\Customers\ExistingCustomer;
 use Idat\Centeno\Workshop\Objects\Customers\NewCustomer;
 use Illuminate\Database\Eloquent\Model;
 
-final class CustomerService
+final class CustomerRepository
 {
     public function __construct(
         private readonly CreateNewCustomer $createNewCustomer,

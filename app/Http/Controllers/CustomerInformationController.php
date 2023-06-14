@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Idat\Centeno\Workshop\Enums\DocumentType;
 use Idat\Centeno\Workshop\Enums\Gender;
-use Idat\Centeno\Workshop\Repositories\CustomerService;
+use Idat\Centeno\Workshop\Repositories\CustomerRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -14,7 +14,7 @@ use Inertia\Response;
 class CustomerInformationController extends Controller
 {
     public function __construct(
-        private readonly CustomerService $customerService
+        private readonly CustomerRepository $customerService
     ) {}
 
     /**
