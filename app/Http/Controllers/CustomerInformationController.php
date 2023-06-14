@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Idat\Centeno\Workshop\Enums\DocumentType;
 use Idat\Centeno\Workshop\Enums\Gender;
-use Idat\Centeno\Workshop\Services\CustomerService;
+use Idat\Centeno\Workshop\Repositories\CustomerService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;

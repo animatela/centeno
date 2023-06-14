@@ -1,6 +1,6 @@
 <?php
 
-namespace Idat\Centeno\Workshop\Services;
+namespace Idat\Centeno\Workshop\Repositories;
 
 use App\Models\Workshop\Customer;
 use Idat\Centeno\Workshop\Commands\Customers\CreateNewCustomer;
