@@ -31,4 +31,19 @@ declare namespace Workshop {
         is_visible?: number
         sort?: string
     }
+
+    export interface Reservation {
+        int: int
+        number: string
+        currency: string
+        date_time: Carbon
+        price: float
+        status: string
+        created_at?: string
+        updated_at?: string
+        deleted_at?: string
+
+        vehicle_id: int
+        service_id: int
+    }
 }

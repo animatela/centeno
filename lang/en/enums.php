@@ -34,6 +34,19 @@ return [
 
     'transmission_type' => [
         'at' => 'Automatic',
-        'mt' => 'Manual'
+        'mt' => 'Manual',
+    ],
+
+    'reservation_status' => [
+        'new' => 'New',
+        'started' => 'Started',
+        'processing' => 'Processing',
+        'completed' => 'Completed',
+        'cancelled' => 'Cancelled',
+    ],
+
+    'currency' => [
+        'pen' => 'Peruvian Sol',
+        'usd' => 'Dollar'
     ]
 ];

@@ -2,12 +2,11 @@
 import { Head } from '@inertiajs/vue3'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import CreateNewReservationForm from './Partials/CreateNewReservationForm.vue'
 import BreadcrumbButton from '@/Components/BreadcrumbButton.vue'
-import UpdateVehicleForm from './Partials/UpdateVehicleForm.vue'
-import DeleteVehicleForm from './Partials/DeleteVehicleForm.vue'
 
 interface Props {
-    vehicle?: Workshop.Vehicle
+    customer: Workshop.Customer,
     fuelTypes: Array<HtmlForm.Option>
     transmissionTypes: Array<HtmlForm.Option>
 }
@@ -42,9 +41,9 @@ const props = defineProps<Props>()
                     </div>
                     <div class="mx-1 text-gray-400">/</div>
                     <div aria-current="page">
-                        <div v-if="vehicle" class="flex items-center">
-                            <BreadcrumbButton :href="route('vehicles.edit', { id: vehicle.id })" current>
-                                <span>{{ vehicle.name }}</span>
+                        <div class="flex items-center">
+                            <BreadcrumbButton :href="route('vehicles.create')" current>
+                                <span>Nuevo Vehículo</span>
                             </BreadcrumbButton>
                         </div>
                     </div>
@@ -52,19 +51,15 @@ const props = defineProps<Props>()
             </nav>
         </template>
 
-        <div v-if="vehicle" class="py-12">
+        <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <UpdateVehicleForm
-                        :vehicle="vehicle"
+                    <CreateNewReservationForm
+                        :customer-id="customer.id"
                         :fuel-types="fuelTypes"
                         :transmission-types="transmissionTypes"
                         class="max-w-xl"
                     />
-                </div>
-
-                <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <DeleteVehicleForm :vehicle-id="vehicle.id" class="max-w-xl" />
                 </div>
             </div>
         </div>

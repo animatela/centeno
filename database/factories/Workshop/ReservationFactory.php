@@ -22,8 +22,9 @@ class ReservationFactory extends Factory
         return [
             'number' => 'RE'.fake()->unique()->randomNumber(6),
             'currency' => strtolower(fake()->currencyCode()),
+            'date_time' => fake()->dateTimeBetween('now', '+10 days'),
             'price' => fake()->randomFloat(2, 100, 2000),
-            'status' => fake()->randomElement(['new', 'processing', 'shipped', 'delivered', 'cancelled']),
+            'status' => fake()->randomElement(['new', 'started', 'processing', 'completed', 'cancelled']),
             'notes' => fake()->realText(100),
             'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
             'updated_at' => fake()->dateTimeBetween('-5 month', 'now'),

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomerInformationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/vehicles/{id}/edit', [VehicleController::class, 'edit'])->name('vehicles.edit');
     Route::put('/vehicles/{id}/update', [VehicleController::class, 'update'])->name('vehicles.update');
     Route::delete('/vehicles/{id}/delete', [VehicleController::class, 'destroy'])->name('vehicles.destroy');
+
+    Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations');
+    Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
+    Route::post('/reservations/store', [ReservationController::class, 'store'])->name('reservations.store');
+    Route::get('/reservations/{id}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
+    Route::put('/reservations/{id}/update', [ReservationController::class, 'update'])->name('reservations.update');
+    Route::delete('/reservations/{id}/delete', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 });
 
 require __DIR__.'/auth.php';

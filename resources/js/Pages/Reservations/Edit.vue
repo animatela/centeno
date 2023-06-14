@@ -3,8 +3,8 @@ import { Head } from '@inertiajs/vue3'
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 import BreadcrumbButton from '@/Components/BreadcrumbButton.vue'
-import UpdateVehicleForm from './Partials/UpdateVehicleForm.vue'
-import DeleteVehicleForm from './Partials/DeleteVehicleForm.vue'
+import UpdateReservationForm from './Partials/UpdateReservationForm.vue'
+import DeleteReservationForm from './Partials/DeleteReservationForm.vue'
 
 interface Props {
     vehicle?: Workshop.Vehicle
@@ -55,7 +55,7 @@ const props = defineProps<Props>()
         <div v-if="vehicle" class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <UpdateVehicleForm
+                    <UpdateReservationForm
                         :vehicle="vehicle"
                         :fuel-types="fuelTypes"
                         :transmission-types="transmissionTypes"
@@ -64,7 +64,7 @@ const props = defineProps<Props>()
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <DeleteVehicleForm :vehicle-id="vehicle.id" class="max-w-xl" />
+                    <DeleteReservationForm :vehicle-id="vehicle.id" class="max-w-xl" />
                 </div>
             </div>
         </div>

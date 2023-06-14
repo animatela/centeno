@@ -12,12 +12,14 @@ return new class extends Migration {
     {
         Schema::create('reservations', static function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('customer_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('vehicle_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('service_id')->nullable()->constrained()->nullOnDelete();
             $table->string('number', 32)->unique();
             $table->string('currency')->nullable();
+            $table->dateTime('date_time')->nullable();
             $table->decimal('price', 12, 2)->nullable();
-            $table->enum('status', ['new', 'processing', 'shipped', 'delivered', 'cancelled'])->default('new');
+            $table->enum('status', ['new', 'started', 'processing', 'completed', 'cancelled'])->default('new');
             $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
