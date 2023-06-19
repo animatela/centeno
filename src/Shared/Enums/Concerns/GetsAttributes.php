@@ -40,7 +40,7 @@ trait GetsAttributes
         return collect(self::cases())->map(
             fn ($enum) => [
                 'name' => self::getTranslation($enum),
-                'value' => $enum->value,
+                'value' => $enum->value ?? $enum->name,
             ]
         )->toArray();
     }

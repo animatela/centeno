@@ -2,9 +2,8 @@
 
 namespace Idat\Centeno\Workshop\Objects\Reservations;
 
-use Idat\Centeno\Workshop\Enums\FuelType;
+use Idat\Centeno\Workshop\Enums\Currency;
 use Idat\Centeno\Workshop\Enums\ReservationStatus;
-use Idat\Centeno\Workshop\Enums\TransmissionType;
 use Illuminate\Support\Carbon;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Optional;
@@ -17,7 +16,7 @@ class ReservationData extends Data
         public int $vehicle_id,
         public int $service_id,
         public string $number,
-        public string $currency,
+        public Currency $currency,
         public Carbon $date_time,
         public float $price,
         public ReservationStatus $status,

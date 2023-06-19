@@ -1,4 +1,10 @@
 declare namespace Workshop {
+    export interface Service {
+        id: number
+        name: string
+        description: string
+    }
+
     export interface Customer {
         id: number
         name?: string
@@ -33,17 +39,18 @@ declare namespace Workshop {
     }
 
     export interface Reservation {
-        int: int
+        id: number
         number: string
         currency: string
-        date_time: Carbon
-        price: float
+        date_time: string
+        price: number
         status: string
         created_at?: string
         updated_at?: string
         deleted_at?: string
 
-        vehicle_id: int
-        service_id: int
+        customer_id: number
+        vehicle_id: number
+        service_id: number
     }
 }

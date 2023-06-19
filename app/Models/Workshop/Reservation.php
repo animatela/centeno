@@ -2,6 +2,7 @@
 
 namespace App\Models\Workshop;
 
+use Idat\Centeno\Workshop\Enums\Currency;
 use Idat\Centeno\Workshop\Enums\ReservationStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,6 +28,7 @@ class Reservation extends Model
     ];
 
     protected $casts = [
+        'currency' => Currency::class,
         'status' => ReservationStatus::class,
     ];
 

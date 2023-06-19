@@ -6,6 +6,7 @@ use App\Http\Requests\Workshop\Reservations\StoreReservationRequest;
 use App\Http\Requests\Workshop\Reservations\UpdateReservationRequest;
 use Idat\Centeno\Workshop\Enums\Currency;
 use Idat\Centeno\Workshop\Repositories\ReservationRepository;
+use Idat\Centeno\Workshop\Repositories\ServiceRepository;
 use Idat\Centeno\Workshop\Repositories\VehicleRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,8 +17,9 @@ use Inertia\Response;
 class ReservationController extends Controller
 {
     public function __construct(
-        private readonly VehicleRepository $vehicle,
         private readonly ReservationRepository $reservation,
+        private readonly ServiceRepository $service,
+        private readonly VehicleRepository $vehicle,
     ) {}
 
     /**
@@ -25,10 +27,14 @@ class ReservationController extends Controller
      */
     public function index(Request $request): Response
     {
+        $customer = $request->user()->customer;
+        $currencies = \Akaunting\Money\Currency::getCurrencies();
+
         return Inertia::render('Reservations/List', [
-            'reservations' => $this->reservation->list(
-                $request->user()->customer->id
-            ),
+            'currencies' => Currency::asSelectArray(),
+            'services' => $this->service->list(),
+            'reservations' => $this->reservation->list($customer->id),
+            'vehicles' => $this->vehicle->list($customer->id),
         ]);
     }
 
@@ -40,6 +46,7 @@ class ReservationController extends Controller
         return Inertia::render('Reservations/Create', [
             'customer' => $request->user()->customer,
             'currencies' => Currency::asSelectArray(),
+            'services' => $this->service->list(),
             'vehicles' => $this->vehicle->list(
                 $request->user()->customer->id
             ),
