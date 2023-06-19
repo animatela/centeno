@@ -31,14 +31,14 @@ class DemoSeeder extends Seeder
         PurgeStorageService::purge('public');
 
         // Admin
-        $admin = $this->seedAdmin();
+        $this->seedAdmin();
 
         // Workshop
-        $workshopUsers = $this->seedUsersForWorkshopCustomers(10);
-        $workshopCustomers = $this->seedWorkshopCustomers(10, $workshopUsers);
-        $workshopVehicles = $this->seedWorkshopVehicles(20, $workshopCustomers);
-        $workshopServices = $this->seedWorkshopServices(20);
-        $this->seedWorkshopReservations(100, $workshopServices, $workshopVehicles);
+        $workshopUsers = $this->seedWorkshopUsers(5);
+        $workshopServices = $this->seedWorkshopServices(2);
+        $workshopCustomers = $this->seedWorkshopCustomers(5, $workshopUsers);
+        $this->seedWorkshopVehicles(10, $workshopCustomers);
+        $this->seedWorkshopReservations(100, $workshopServices, $workshopCustomers);
     }
 
     protected function seedAdmin(): Collection
@@ -59,7 +59,7 @@ class DemoSeeder extends Seeder
         return $admins;
     }
 
-    protected function seedUsersForWorkshopCustomers(int $amount): Collection
+    protected function seedWorkshopUsers(int $amount): Collection
     {
         $this->command->warn(PHP_EOL.'Creating users...');
 
@@ -120,7 +120,7 @@ class DemoSeeder extends Seeder
         $services = $this->withProgressBar(
             $amount,
             fn () => Service::factory(1)
-                ->has(ServiceItem::factory()->count(2), 'items')
+                ->has(ServiceItem::factory()->count(5), 'items')
                 ->create()
         );
 
@@ -129,20 +129,28 @@ class DemoSeeder extends Seeder
         return $services;
     }
 
-    private function seedWorkshopReservations(int $amount, Collection $services, Collection $vehicles): Collection
+    private function seedWorkshopReservations(int $amount, Collection $services, Collection $customers): Collection
     {
         $this->command->warn(PHP_EOL.'Creating workshop reservations...');
 
         $reservations = $this->withProgressBar(
             $amount,
-            fn () => Reservation::factory(1)
-                ->for($services->random(1)->first())
-                ->for($vehicles->random(1)->first())
-                ->create()
+            fn () => $this->createReservation($customers, $services)
         );
 
         $this->command->info('Workshop reservations created.');
 
         return $reservations;
+    }
+
+    private static function createReservation(Collection $customers, Collection $services)
+    {
+        $customer = $customers->random(1)->first();
+
+        return Reservation::factory(1)
+            ->for($customer)
+            ->for($customer->vehicles->random(1)->first())
+            ->for($services->random(1)->first())
+            ->create();
     }
 }
