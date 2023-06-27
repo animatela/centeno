@@ -28,12 +28,11 @@ class ReservationController extends Controller
     public function index(Request $request): Response
     {
         $customer = $request->user()->customer;
-        $currencies = \Akaunting\Money\Currency::getCurrencies();
 
         return Inertia::render('Reservations/List', [
             'currencies' => Currency::asSelectArray(),
             'services' => $this->service->list(),
-            'reservations' => $this->reservation->list($customer->id),
+            'reservations' => $this->reservation->paginated($customer->id),
             'vehicles' => $this->vehicle->list($customer->id),
         ]);
     }

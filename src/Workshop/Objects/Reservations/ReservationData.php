@@ -11,7 +11,7 @@ use Spatie\LaravelData\Optional;
 class ReservationData extends Data
 {
     public function __construct(
-        public int $int,
+        public int $id,
         public int $customer_id,
         public int $vehicle_id,
         public int $service_id,
@@ -20,6 +20,7 @@ class ReservationData extends Data
         public Carbon $date_time,
         public float $price,
         public ReservationStatus $status,
+        public string $notes,
         public Carbon|Optional|null $created_at,
         public Carbon|Optional|null $updated_at,
         public Carbon|Optional|null $deleted_at,

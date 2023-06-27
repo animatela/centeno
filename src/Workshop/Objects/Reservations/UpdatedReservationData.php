@@ -16,6 +16,7 @@ class UpdatedReservationData extends Data
         public Carbon $date_time,
         public float $price,
         public ReservationStatus $status,
+        public string $notes,
         public Carbon|Optional|null $created_at,
         public Carbon|Optional|null $updated_at,
         public Carbon|Optional|null $deleted_at,
