@@ -23,7 +23,8 @@ class Reservation extends Model
     protected $fillable = [
         'number',
         'currency',
-        'date_time',
+        'reservation_date',
+        'reservation_time',
         'price',
         'status',
         'notes',
@@ -31,7 +32,8 @@ class Reservation extends Model
 
     protected $casts = [
         'currency' => Currency::class,
-        'date_time' => 'datetime',
+        'reservation_date' => 'datetime:Y-m-d',
+        'reservation_time' => 'datetime:H:i:s',
         'status' => ReservationStatus::class,
     ];
 

@@ -23,7 +23,8 @@ class ReservationFactory extends Factory
         return [
             'number' => Str::upper(Str::of(Str::ulid()->toRfc4122())->explode('-')->last()),
             'currency' => fake()->randomElement(['PEN', 'USD']),
-            'date_time' => fake()->dateTimeBetween('now', '+10 days'),
+            'reservation_date' => fake()->date('Y-m-d', '+10 days'),
+            'reservation_time' => fake()->time('H:i:s', '+10 days'),
             'price' => fake()->randomFloat(2, 100, 2000),
             'status' => fake()->randomElement(['new', 'started', 'processing', 'completed', 'cancelled']),
             'notes' => fake()->realText(100),

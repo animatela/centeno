@@ -29,7 +29,8 @@ const form = useForm({
     vehicle_id: 0,
     service_id: 0,
     number: '',
-    date_time: '',
+    reservation_date: '',
+    reservation_time: '',
     notes: '',
 });
 
@@ -102,16 +103,29 @@ const createReservation = () => {
             </div>
 
             <div>
-                <InputLabel for="date_time" value="Fecha y Hora" />
+                <InputLabel for="reservation_date" value="Fecha" />
 
                 <TextInput
-                    id="date_time"
-                    type="datetime-local"
+                    id="reservation_date"
+                    type="date"
                     class="mt-1 block w-full"
-                    v-model="form.date_time"
+                    v-model="form.reservation_date"
                 />
 
-                <InputError class="mt-2" :message="form.errors.date_time" />
+                <InputError class="mt-2" :message="form.errors.reservation_date" />
+            </div>
+
+            <div>
+                <InputLabel for="reservation_time" value="Hora" />
+
+                <TextInput
+                    id="reservation_time"
+                    type="time"
+                    class="mt-1 block w-full"
+                    v-model="form.reservation_time"
+                />
+
+                <InputError class="mt-2" :message="form.errors.reservation_time" />
             </div>
 
             <div>

@@ -8,8 +8,8 @@ import BreadcrumbButton from '@/Components/BreadcrumbButton.vue'
 interface Props {
     customer: Workshop.Customer
     currencies: Array<HtmlForm.Option>
-    services: Array<HtmlForm.Option>
     vehicles: Array<HtmlForm.Option>
+    services: Array<HtmlForm.Option>
 }
 
 const props = defineProps<Props>()

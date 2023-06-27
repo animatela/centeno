@@ -126,6 +126,7 @@ console.log(props.currencies)
                                     <TableHeadColumn scope="col">Number</TableHeadColumn>
                                     <TableHeadColumn scope="col">Vehicle</TableHeadColumn>
                                     <TableHeadColumn scope="col">Service</TableHeadColumn>
+                                    <TableHeadColumn scope="col">Date / Time</TableHeadColumn>
                                     <TableHeadColumn scope="col">Currency</TableHeadColumn>
                                     <TableHeadColumn scope="col">Price</TableHeadColumn>
                                     <TableHeadColumn scope="col">
@@ -147,6 +148,9 @@ console.log(props.currencies)
                                     </TableBodyColumn>
                                     <TableBodyColumn>
                                         {{ serviceName(reservation.service_id) }}
+                                    </TableBodyColumn>
+                                    <TableBodyColumn>
+                                        {{ reservation.reservation_date }} / {{ reservation.reservation_time }}
                                     </TableBodyColumn>
                                     <TableBodyColumn>{{ currencyName(reservation.currency) }}</TableBodyColumn>
                                     <TableBodyColumn class="text-right">

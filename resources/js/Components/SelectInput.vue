@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 
 interface Props {
-    modelValue: string
+    modelValue: string | number
     options: Array<HtmlForm.Option>
 }
 

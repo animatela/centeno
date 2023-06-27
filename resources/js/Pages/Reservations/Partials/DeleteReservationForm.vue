@@ -11,7 +11,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue'
 import TextInput from '@/Components/TextInput.vue'
 
 interface Props {
-    vehicleId: number;
+    reservationId: number;
 }
 
 const props = defineProps<Props>()
@@ -22,7 +22,7 @@ const confirmingVehicleDeletion = ref(false);
 const passwordInput = ref<HTMLInputElement | null>(null);
 
 const form = useForm({
-    vehicleId: props.vehicleId,
+    reservationId: props.reservationId,
     password: '',
 });
 
@@ -32,11 +32,11 @@ const confirmVehicleDeletion = () => {
     nextTick(() => passwordInput.value?.focus());
 };
 
-const deleteVehicle = () => {
-    form.delete(route('vehicles.destroy', { id: props.vehicleId }), {
+const deleteReservation = () => {
+    form.delete(route('reservations.destroy', { id: props.reservationId }), {
         preserveScroll: true,
         onSuccess: () => {
-            showSuccessMessage('Vehicle Deleted', 'Your Vehicle has been deleted.')
+            showSuccessMessage('Reservation Deleted', 'Your Reservation has been deleted.')
             closeModal()
         },
         onError: () => passwordInput.value?.focus(),
@@ -85,7 +85,7 @@ const closeModal = () => {
                         type="password"
                         class="mt-1 block w-3/4"
                         placeholder="Password"
-                        @keyup.enter="deleteVehicle"
+                        @keyup.enter="deleteReservation"
                     />
 
                     <InputError :message="form.errors.password" class="mt-2" />
@@ -98,9 +98,9 @@ const closeModal = () => {
                         class="ml-3"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
-                        @click="deleteVehicle"
+                        @click="deleteReservation"
                     >
-                        Eliminar Vehículo
+                        Eliminar Reserva
                     </DangerButton>
                 </div>
             </div>

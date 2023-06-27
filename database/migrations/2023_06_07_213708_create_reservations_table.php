@@ -16,7 +16,8 @@ return new class extends Migration {
             $table->foreignId('vehicle_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('service_id')->nullable()->constrained()->nullOnDelete();
             $table->string('number', 32)->unique();
-            $table->dateTime('date_time')->nullable();
+            $table->date('reservation_date')->nullable();
+            $table->time('reservation_time')->nullable();
             $table->enum('currency', ['USD', 'PEN'])->nullable();
             $table->decimal('price', 12, 2)->nullable();
             $table->enum('status', ['new', 'started', 'processing', 'completed', 'cancelled'])->default('new');

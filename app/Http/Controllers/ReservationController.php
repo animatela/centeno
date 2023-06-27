@@ -77,12 +77,19 @@ class ReservationController extends Controller
      */
     public function edit(Request $request, int $id): Response
     {
+        $customer = $request->user()->customer;
+
         return Inertia::render('Reservations/Edit', [
             'reservation' => $this->reservation->find($id),
             'currencies' => Currency::asSelectArray(),
-            'vehicles' => $this->vehicle->list(
-                $request->user()->customer->id
-            ),
+            'services' => $this->service->list()->transform(fn (ServiceData $service) => [
+                'name' => $service->name,
+                'value' => $service->id,
+            ]),
+            'vehicles' => $this->vehicle->list($customer->id)->transform(fn (VehicleData $vehicle) => [
+                'name' => $vehicle->name,
+                'value' => $vehicle->id,
+            ]),
         ]);
     }
 
@@ -91,7 +98,10 @@ class ReservationController extends Controller
      */
     public function update(UpdateReservationRequest $request, string $id): RedirectResponse
     {
-        $this->reservation->update($id, $request->all());
+        $this->reservation->update(
+            id: $id,
+            payload: $request->validated()
+        );
 
         return Redirect::route('reservations.edit', $id);
     }

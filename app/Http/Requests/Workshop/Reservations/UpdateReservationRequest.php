@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Workshop\Reservations;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateReservationRequest extends FormRequest
@@ -11,18 +12,21 @@ class UpdateReservationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            //
+            'service_id' => 'required|exists:services,id',
+            'reservation_date' => 'required|date|after:now',
+            'reservation_time' => 'required|date_format:H:i:s',
+            'notes' => 'nullable|string',
         ];
     }
 }

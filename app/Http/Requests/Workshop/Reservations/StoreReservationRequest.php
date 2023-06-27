@@ -26,7 +26,8 @@ class StoreReservationRequest extends FormRequest
             'customer_id' => 'required|exists:customers,id',
             'vehicle_id' => 'required|exists:vehicles,id',
             'service_id' => 'required|exists:services,id',
-            'date_time' => 'required|date|after:now',
+            'reservation_date' => 'required|date|after:now',
+            'reservation_time' => 'required|date_format:H:i',
             'notes' => 'nullable|string',
         ];
     }

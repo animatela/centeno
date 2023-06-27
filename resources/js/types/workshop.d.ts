@@ -42,9 +42,11 @@ declare namespace Workshop {
         id: number
         number: string
         currency: string
-        date_time: string
+        reservation_date: string
+        reservation_time: string
         price: number
         status: string
+        notes: string
         created_at?: string
         updated_at?: string
         deleted_at?: string
