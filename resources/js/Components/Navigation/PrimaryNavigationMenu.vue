@@ -34,9 +34,9 @@ const emit = defineEmits(['showingNavigation'])
                         Dashboard
                     </NavLink>
 
-                    <NavLink :href="route('vehicles')" :active="route().current('vehicles')">
+                    <!--<NavLink :href="route('vehicles')" :active="route().current('vehicles')">
                         Mis Vehículos
-                    </NavLink>
+                    </NavLink>-->
                 </div>
             </div>
 
