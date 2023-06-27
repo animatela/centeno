@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'centeno@arcnet.dev',
             'password' => bcrypt('password'),
+            'is_admin' => true,
         ]);
     }
 }
