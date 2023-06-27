@@ -38,6 +38,7 @@ class DemoSeeder extends Seeder
         $workshopUsers = $this->seedWorkshopUsers(5);
         $workshopServices = $this->seedWorkshopServices(2);
         $workshopCustomers = $this->seedWorkshopCustomers(5, $workshopUsers);
+        $this->seedWorkshopServiceItems($workshopServices);
         $this->seedWorkshopVehicles(10, $workshopCustomers);
         $this->seedWorkshopReservations(40, $workshopServices, $workshopCustomers);
     }
@@ -104,7 +105,7 @@ class DemoSeeder extends Seeder
 
         $vehicles = $this->withProgressBar(
             $amount,
-            fn () => Vehicle::factory(1)
+            fn () => Vehicle::factory(2)
                 ->for($customers->random(1)->first())
                 ->create()
         );
@@ -142,7 +143,7 @@ class DemoSeeder extends Seeder
         return $services;
     }
 
-    private function seedWorkshopServiceItems(Collection $services)
+    private function seedWorkshopServiceItems(Collection $services): void
     {
         $initialData = [
             1 => [

@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 final class FindService
 {
-    public function handle(int $id): Model|Service
+    public function handle(int $id, bool $items): Model|Service
     {
-        return Service::query()->find($id);
+        $query = Service::query();
+
+        if ($items) {
+            $query->with('items');
+        }
+
+        return $query->find($id);
     }
 }

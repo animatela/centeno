@@ -40,10 +40,10 @@ final class ServiceRepository
         );
     }
 
-    public function find(int $id): ServiceData
+    public function find(int $id, bool $items = false): ServiceData
     {
         return ServiceData::from(
-            $this->findService->handle($id)
+            $this->findService->handle($id, $items)
         );
     }
 

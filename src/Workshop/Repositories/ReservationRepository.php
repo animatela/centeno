@@ -25,6 +25,7 @@ final class ReservationRepository
         private readonly UpdateReservation $updateReservation,
         private readonly DeleteReservation $deleteReservation,
         private readonly ForceDeleteReservation $forceDeleteReservation,
+        private readonly ServiceRepository $service,
     ) {}
 
     public function list(?int $customerId): Collection
@@ -45,9 +46,15 @@ final class ReservationRepository
 
     public function create(array $payload): ReservationData
     {
+        $service = $this->service->find($payload['service_id'], true);
+
         return ReservationData::from(
             $this->createReservation->handle(
-                NewReservationData::from($payload)
+                NewReservationData::from([
+                    ...$payload,
+                    'currency' => 'PEN',
+                    'price' => collect($service->items)->sum('price'),
+                ])
             )
         );
     }
