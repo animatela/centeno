@@ -83,7 +83,8 @@ console.log(props.currencies)
             <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
                 <!-- Start coding here -->
                 <section class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-                    <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                    <div
+                        class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                         <div class="w-full md:w-1/2">
                             <form class="flex items-center">
                                 <label for="simple-search" class="sr-only">Search</label>
@@ -106,7 +107,8 @@ console.log(props.currencies)
                                 </div>
                             </form>
                         </div>
-                        <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                        <div
+                            class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                             <PrimaryButton type="button" @click="newReservation">
                                 Agregar
                             </PrimaryButton>
@@ -120,67 +122,68 @@ console.log(props.currencies)
                     <div class="overflow-x-auto">
                         <Table v-if="reservations">
                             <TableHead>
-                            <TableHeadRow>
-                                <TableHeadColumn scope="col">Number</TableHeadColumn>
-                                <TableHeadColumn scope="col">Vehicle</TableHeadColumn>
-                                <TableHeadColumn scope="col">Service</TableHeadColumn>
-                                <TableHeadColumn scope="col">Currency</TableHeadColumn>
-                                <TableHeadColumn scope="col">Price</TableHeadColumn>
-                                <TableHeadColumn scope="col">
-                                    <span class="sr-only">Actions</span>
-                                </TableHeadColumn>
-                            </TableHeadRow>
+                                <TableHeadRow>
+                                    <TableHeadColumn scope="col">Number</TableHeadColumn>
+                                    <TableHeadColumn scope="col">Vehicle</TableHeadColumn>
+                                    <TableHeadColumn scope="col">Service</TableHeadColumn>
+                                    <TableHeadColumn scope="col">Currency</TableHeadColumn>
+                                    <TableHeadColumn scope="col">Price</TableHeadColumn>
+                                    <TableHeadColumn scope="col">
+                                        <span class="sr-only">Actions</span>
+                                    </TableHeadColumn>
+                                </TableHeadRow>
                             </TableHead>
                             <TableBody>
-                            <TableBodyRow v-for="reservation in reservations.data">
-                                <TableBodyHeader scope="row">
-                                    <Link :href="route('reservations.edit', reservation.id)">
-                                        {{ reservation.number }}
-                                    </Link>
-                                </TableBodyHeader>
-                                <TableBodyColumn>
-                                    <a href="#" class="hover:underline">
-                                        {{ vehicleName(reservation.vehicle_id) }}
-                                    </a>
-                                </TableBodyColumn>
-                                <TableBodyColumn>
-                                    {{ serviceName(reservation.service_id) }}
-                                </TableBodyColumn>
-                                <TableBodyColumn>{{ currencyName(reservation.currency) }}</TableBodyColumn>
-                                <TableBodyColumn class="text-right">
-                                    {{ reservation.price.toFixed(2) }}
-                                </TableBodyColumn>
-                                <TableBodyColumn class="flex items-center justify-end">
-                                    <button id="apple-imac-27-dropdown-button"
-                                            data-dropdown-toggle="apple-imac-27-dropdown"
-                                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
-                                            type="button">
-                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                        </svg>
-                                    </button>
-                                    <div id="apple-imac-27-dropdown"
-                                         class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                                            aria-labelledby="apple-imac-27-dropdown-button">
-                                            <li>
+                                <TableBodyRow v-for="reservation in reservations.data">
+                                    <TableBodyHeader scope="row">
+                                        <Link :href="route('reservations.edit', reservation.id)">
+                                            {{ reservation.number }}
+                                        </Link>
+                                    </TableBodyHeader>
+                                    <TableBodyColumn>
+                                        <a href="#" class="hover:underline">
+                                            {{ vehicleName(reservation.vehicle_id) }}
+                                        </a>
+                                    </TableBodyColumn>
+                                    <TableBodyColumn>
+                                        {{ serviceName(reservation.service_id) }}
+                                    </TableBodyColumn>
+                                    <TableBodyColumn>{{ currencyName(reservation.currency) }}</TableBodyColumn>
+                                    <TableBodyColumn class="text-right">
+                                        {{ reservation.price.toFixed(2) }}
+                                    </TableBodyColumn>
+                                    <TableBodyColumn class="flex items-center justify-end">
+                                        <button id="apple-imac-27-dropdown-button"
+                                                data-dropdown-toggle="apple-imac-27-dropdown"
+                                                class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
+                                                type="button">
+                                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                 viewbox="0 0 20 20"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                            </svg>
+                                        </button>
+                                        <div id="apple-imac-27-dropdown"
+                                             class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                                aria-labelledby="apple-imac-27-dropdown-button">
+                                                <li>
+                                                    <a href="#"
+                                                       class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"
+                                                       class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                                </li>
+                                            </ul>
+                                            <div class="py-1">
                                                 <a href="#"
-                                                   class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                   class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                            </li>
-                                        </ul>
-                                        <div class="py-1">
-                                            <a href="#"
-                                               class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                                   class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </TableBodyColumn>
-                            </TableBodyRow>
+                                    </TableBodyColumn>
+                                </TableBodyRow>
                             </TableBody>
                         </Table>
                     </div>
@@ -190,22 +193,36 @@ console.log(props.currencies)
                         aria-label="Table navigation">
                         <span class="flex gap-2 text-sm font-normal text-gray-500 dark:text-gray-400">
                             <span>Showing</span>
-                            <span class="font-semibold text-gray-900 dark:text-white">1 - 10</span>
-                            <span>of</span>
-                            <span class="font-semibold text-gray-900 dark:text-white">1000</span>
+                            <span class="font-semibold text-gray-900 dark:text-white">{{ reservations.per_page }}</span>
                         </span>
                         <ul class="inline-flex items-stretch -space-x-px">
                             <li>
-                                <Link href="#" class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <Link
+                                    v-if="reservations.prev_page_url"
+                                    :href="reservations.prev_page_url"
+                                    class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                >
                                     <span class="sr-only">Previous</span>
                                     <ChevronLeftIcon class="w-5 h-5" />
                                 </Link>
+                                <span v-else class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 opacity-50">
+                                    <span class="sr-only">Previous</span>
+                                    <ChevronLeftIcon class="w-5 h-5" />
+                                </span>
                             </li>
                             <li>
-                                <Link href="#" class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <Link
+                                    v-if="reservations.next_page_url"
+                                    :href="reservations.next_page_url"
+                                    class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                >
                                     <span class="sr-only">Next</span>
                                     <ChevronRightIcon class="w-5 h-5" />
                                 </Link>
+                                <span v-else class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 opacity-50">
+                                    <span class="sr-only">Next</span>
+                                    <ChevronRightIcon class="w-5 h-5" />
+                                </span>
                             </li>
                         </ul>
                     </nav>
