@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Workshop\Reservations\StoreReservationRequest;
 use App\Http\Requests\Workshop\Reservations\UpdateReservationRequest;
 use Idat\Centeno\Workshop\Enums\Currency;
+use Idat\Centeno\Workshop\Objects\Services\ServiceData;
+use Idat\Centeno\Workshop\Objects\Vehicles\VehicleData;
 use Idat\Centeno\Workshop\Repositories\ReservationRepository;
 use Idat\Centeno\Workshop\Repositories\ServiceRepository;
 use Idat\Centeno\Workshop\Repositories\VehicleRepository;
@@ -42,13 +44,19 @@ class ReservationController extends Controller
      */
     public function create(Request $request): Response
     {
+        $customer = $request->user()->customer;
+
         return Inertia::render('Reservations/Create', [
-            'customer' => $request->user()->customer,
+            'customer' => $customer,
             'currencies' => Currency::asSelectArray(),
-            'services' => $this->service->list(),
-            'vehicles' => $this->vehicle->list(
-                $request->user()->customer->id
-            ),
+            'services' => $this->service->list()->transform(fn (ServiceData $service) => [
+                'name' => $service->name,
+                'value' => $service->id,
+            ]),
+            'vehicles' => $this->vehicle->list($customer->id)->transform(fn (VehicleData $vehicle) => [
+                'name' => $vehicle->name,
+                'value' => $vehicle->id,
+            ]),
         ]);
     }
 
@@ -57,7 +65,9 @@ class ReservationController extends Controller
      */
     public function store(StoreReservationRequest $request): RedirectResponse
     {
-        $this->reservation->create($request->all());
+        $this->reservation->create(
+            $request->validated()
+        );
 
         return Redirect::route('reservations');
     }

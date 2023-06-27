@@ -21,7 +21,7 @@ class ReservationFactory extends Factory
     public function definition(): array
     {
         return [
-            'number' => 'RE'.Str::padLeft(fake()->unique()->randomNumber(6), 10, 0),
+            'number' => Str::upper(Str::of(Str::ulid()->toRfc4122())->explode('-')->last()),
             'currency' => fake()->randomElement(['PEN', 'USD']),
             'date_time' => fake()->dateTimeBetween('now', '+10 days'),
             'price' => fake()->randomFloat(2, 100, 2000),

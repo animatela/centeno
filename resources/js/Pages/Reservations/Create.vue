@@ -6,9 +6,10 @@ import CreateNewReservationForm from './Partials/CreateNewReservationForm.vue'
 import BreadcrumbButton from '@/Components/BreadcrumbButton.vue'
 
 interface Props {
-    customer: Workshop.Customer,
-    fuelTypes: Array<HtmlForm.Option>
-    transmissionTypes: Array<HtmlForm.Option>
+    customer: Workshop.Customer
+    currencies: Array<HtmlForm.Option>
+    services: Array<HtmlForm.Option>
+    vehicles: Array<HtmlForm.Option>
 }
 
 const props = defineProps<Props>()
@@ -34,16 +35,16 @@ const props = defineProps<Props>()
                     <div class="mx-1 text-gray-400">/</div>
                     <div aria-current="page">
                         <div class="flex items-center">
-                            <BreadcrumbButton :href="route('vehicles')" current>
-                                <span>Mis Vehículos</span>
+                            <BreadcrumbButton :href="route('reservations')" current>
+                                <span>Mis Reservas</span>
                             </BreadcrumbButton>
                         </div>
                     </div>
                     <div class="mx-1 text-gray-400">/</div>
                     <div aria-current="page">
                         <div class="flex items-center">
-                            <BreadcrumbButton :href="route('vehicles.create')" current>
-                                <span>Nuevo Vehículo</span>
+                            <BreadcrumbButton :href="route('reservations.create')" current>
+                                <span>Nueva Reserva</span>
                             </BreadcrumbButton>
                         </div>
                     </div>
@@ -56,8 +57,9 @@ const props = defineProps<Props>()
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                     <CreateNewReservationForm
                         :customer-id="customer.id"
-                        :fuel-types="fuelTypes"
-                        :transmission-types="transmissionTypes"
+                        :currencies="currencies"
+                        :services="services"
+                        :vehicles="vehicles"
                         class="max-w-xl"
                     />
                 </div>

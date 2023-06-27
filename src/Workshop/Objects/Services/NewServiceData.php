@@ -13,7 +13,7 @@ class NewServiceData extends Data
         public string|Optional $description,
         public string|Optional $type,
         public int|Optional $position,
-        public bool $is_visible,
+        public bool|Optional $is_visible,
         public string|Optional $seo_title,
         public string|Optional $seo_description,
         public int|Optional $sort,

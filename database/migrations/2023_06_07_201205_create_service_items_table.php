@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('sort')->default(0);
             $table->foreignId('service_id')->nullable()->constrained()->cascadeOnDelete();
             $table->text('description');
-            $table->integer('qty');
+            $table->integer('quantity')->default(1);
             $table->decimal('price', 10, 2);
             $table->timestamps();
         });

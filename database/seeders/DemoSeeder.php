@@ -12,8 +12,9 @@ use App\Models\Workshop\Vehicle;
 use App\Support\PurgeStorageService;
 use App\Support\Traits\WithProgressBar;
 use Exception;
+use Idat\Centeno\Workshop\Objects\Services\NewServiceData;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -38,7 +39,7 @@ class DemoSeeder extends Seeder
         $workshopServices = $this->seedWorkshopServices(2);
         $workshopCustomers = $this->seedWorkshopCustomers(5, $workshopUsers);
         $this->seedWorkshopVehicles(10, $workshopCustomers);
-        $this->seedWorkshopReservations(100, $workshopServices, $workshopCustomers);
+        $this->seedWorkshopReservations(40, $workshopServices, $workshopCustomers);
     }
 
     protected function seedAdmin(): Collection
@@ -113,20 +114,129 @@ class DemoSeeder extends Seeder
         return $vehicles;
     }
 
-    private function seedWorkshopServices(int $amount): Collection
+    private function seedWorkshopServices(): Collection
     {
+        $initialData = [
+            NewServiceData::from([
+                'name' => 'Mantenimiento Preventivo',
+                'slug' => 'services/mantenimiento-preventivo',
+                'description' => 'Se realiza con el fin de prevenir o evitar fallas en el vehículo, mediante la revisión y cambio de piezas.',
+            ]),
+            NewServiceData::from([
+                'name' => 'Mantenimiento Correctivo',
+                'slug' => 'services/mantenimiento-correctivo',
+                'description' => 'Se realiza cuando el vehículo presenta alguna falla o avería, con el fin de repararla y que el vehículo vuelva a funcionar correctamente.',
+            ]),
+        ];
+
         $this->command->warn(PHP_EOL.'Creating workshop services...');
 
-        $services = $this->withProgressBar(
-            $amount,
-            fn () => Service::factory(1)
-                ->has(ServiceItem::factory()->count(5), 'items')
-                ->create()
+        $services = collect($initialData)->map(
+            fn (NewServiceData $service) => Service::factory()->create(
+                $service->toArray()
+            )
         );
 
         $this->command->info('Workshop services created.');
 
         return $services;
+    }
+
+    private function seedWorkshopServiceItems(Collection $services)
+    {
+        $initialData = [
+            1 => [
+                [
+                    'description' => 'Cambio de aceite de motor',
+                    'quantity' => 1,
+                    'price' => 100,
+                ],
+                [
+                    'description' => 'Cambio de filtro de aceite de motor',
+                    'quantity' => 1,
+                    'price' => 50,
+                ],
+                [
+                    'description' => 'Cambio de filtro de aire de motor',
+                    'quantity' => 1,
+                    'price' => 50,
+                ],
+                [
+                    'description' => 'Cambio de filtro de combustible de motor',
+                    'quantity' => 1,
+                    'price' => 50,
+                ],
+                [
+                    'description' => 'Cambio de filtro de habitáculo de motor',
+                    'quantity' => 1,
+                    'price' => 50,
+                ],
+                [
+                    'description' => 'Cambio de bujías de motor',
+                    'quantity' => 1,
+                    'price' => 50,
+                ],
+                [
+                    'description' => 'Cambio de pastillas de freno',
+                    'quantity' => 1,
+                    'price' => 50,
+                ],
+                [
+                    'description' => 'Cambio de discos de freno',
+                    'quantity' => 1,
+                    'price' => 50,
+                ],
+            ],
+            2 => [
+                [
+                    'description' => 'Reparación de componentes defectuosos',
+                    'quantity' => 1,
+                    'price' => 100,
+                ],
+                [
+                    'description' => 'Solución de problemas eléctricos',
+                    'quantity' => 1,
+                    'price' => 150,
+                ],
+                [
+                    'description' => 'Reparación de fugas de líquidos',
+                    'quantity' => 1,
+                    'price' => 50,
+                ],
+                [
+                    'description' => 'Solución de problemas de rendimiento',
+                    'quantity' => 1,
+                    'price' => 50,
+                ],
+                [
+                    'description' => 'Reparación de daños por accidentes',
+                    'quantity' => 1,
+                    'price' => 50,
+                ],
+                [
+                    'description' => 'Reparación de daños por desgaste',
+                    'quantity' => 1,
+                    'price' => 50,
+                ],
+            ],
+        ];
+
+        $this->command->warn(PHP_EOL.'Creating workshop service items...');
+
+        collect($initialData)->each(
+            fn (array $items, int $serviceId) => collect($items)->each(
+                fn (array $item) => ServiceItem::factory()->create(
+                    array_merge(
+                        $item,
+                        [
+                            'service_id' => $serviceId,
+                        ]
+                    )
+                )
+            )
+        );
+
+        $this->command->info('Workshop service items created.');
     }
 
     private function seedWorkshopReservations(int $amount, Collection $services, Collection $customers): Collection

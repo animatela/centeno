@@ -21,6 +21,7 @@ class ServiceItemFactory extends Factory
     {
         return [
             'description' => fake()->sentence(),
+            'currency' => fake()->randomElement(['PEN', 'USD']),
             'qty' => fake()->numberBetween(1, 10),
             'price' => fake()->randomFloat(2, 100, 500),
         ];

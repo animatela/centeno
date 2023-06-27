@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 /**
  * @mixin IdeHelperReservation
@@ -33,6 +34,16 @@ class Reservation extends Model
         'date_time' => 'datetime',
         'status' => ReservationStatus::class,
     ];
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(static function ($model) {
+            $model->number = Str::upper(Str::of(Str::ulid()->toRfc4122())->explode('-')->last());
+            $model->status = ReservationStatus::NEW;
+        });
+    }
 
     public function customer(): BelongsTo
     {

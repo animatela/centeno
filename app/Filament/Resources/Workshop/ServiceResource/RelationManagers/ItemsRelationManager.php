@@ -23,7 +23,7 @@ class ItemsRelationManager extends RelationManager
                 Forms\Components\TextInput::make('description')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('qty')
+                Forms\Components\TextInput::make('quantity')
                     ->numeric()
                     ->default(1)
                     ->required(),
@@ -38,7 +38,7 @@ class ItemsRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('qty'),
+                Tables\Columns\TextColumn::make('quantity'),
                 Tables\Columns\TextColumn::make('price'),
             ])
             ->filters([

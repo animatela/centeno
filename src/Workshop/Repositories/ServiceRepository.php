@@ -11,7 +11,7 @@ use Idat\Centeno\Workshop\Commands\Services\UpdateService;
 use Idat\Centeno\Workshop\Objects\Services\NewServiceData;
 use Idat\Centeno\Workshop\Objects\Services\ServiceData;
 use Idat\Centeno\Workshop\Objects\Services\UpdatedServiceData;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 final class ServiceRepository
 {
@@ -26,7 +26,9 @@ final class ServiceRepository
 
     public function list(): Collection
     {
-        return $this->listServices->handle();
+        return $this->listServices->handle()->map(
+            fn ($service) => ServiceData::from($service)
+        );
     }
 
     public function create(array $payload): ServiceData

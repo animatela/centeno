@@ -26,6 +26,7 @@ class ServiceFactory extends Factory
             'description' => fake()->realText(),
             'type' => fake()->word(),
             'is_visible' => fake()->boolean(),
+            'sort' => fake()->numberBetween(1, 100),
             'created_at' => fake()->dateTimeBetween('-1 year', '-6 month'),
             'updated_at' => fake()->dateTimeBetween('-5 month', 'now'),
         ];

@@ -18,6 +18,10 @@ class Service extends Model
      */
     protected $table = 'services';
 
+    protected $fillable = [
+        'name',
+        'description',
+    ];
 
     public function items(): HasMany
     {

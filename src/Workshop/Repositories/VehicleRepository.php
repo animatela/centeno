@@ -11,7 +11,7 @@ use Idat\Centeno\Workshop\Commands\Vehicles\UpdateVehicle;
 use Idat\Centeno\Workshop\Objects\Vehicles\NewVehicleData;
 use Idat\Centeno\Workshop\Objects\Vehicles\UpdatedVehicleData;
 use Idat\Centeno\Workshop\Objects\Vehicles\VehicleData;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 final class VehicleRepository
 {
@@ -26,8 +26,8 @@ final class VehicleRepository
 
     public function list(?int $customerId): Collection
     {
-        return $this->listVehicles->handle(
-            $customerId
+        return $this->listVehicles->handle($customerId)->map(
+            fn ($vehicle) => VehicleData::from($vehicle)
         );
     }
 
