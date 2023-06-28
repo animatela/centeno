@@ -71,9 +71,11 @@ class ReservationResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('currency'),
                 Tables\Columns\TextColumn::make('price'),
-                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('status')
+                    ->sortable(),
                 //Tables\Columns\TextColumn::make('notes'),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
@@ -88,7 +90,7 @@ class ReservationResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-                ExportBulkAction::make()
+                ExportBulkAction::make(),
             ]);
     }
 
