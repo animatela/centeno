@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Idat\Centeno\Workshop\Enums\ReservationStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
@@ -40,7 +41,14 @@ class ReservationResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('currency'),
                 Forms\Components\TextInput::make('price'),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\Select::make('status')
+                    ->options([
+                        ReservationStatus::NEW->value => 'Nueva',
+                        ReservationStatus::STARTED->value => 'Iniciada',
+                        ReservationStatus::PROCESSING->value => 'En Proceso',
+                        ReservationStatus::COMPLETED->value => 'Completada',
+                        ReservationStatus::CANCELLED->value => 'Cancelada',
+                    ])
                     ->required(),
                 Forms\Components\Textarea::make('notes'),
             ]);
