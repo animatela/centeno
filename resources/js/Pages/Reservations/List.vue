@@ -156,6 +156,9 @@ console.log(props.currencies)
                                     <TableBodyColumn class="text-right">
                                         {{ reservation.price?.toFixed(2) }}
                                     </TableBodyColumn>
+                                    <TableBodyColumn>
+                                        {{ reservation.status }}
+                                    </TableBodyColumn>
                                     <TableBodyColumn class="flex items-center justify-end">
                                         <button id="apple-imac-27-dropdown-button"
                                                 data-dropdown-toggle="apple-imac-27-dropdown"
