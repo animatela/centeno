@@ -129,6 +129,7 @@ console.log(props.currencies)
                                     <TableHeadColumn scope="col">Date / Time</TableHeadColumn>
                                     <TableHeadColumn scope="col">Currency</TableHeadColumn>
                                     <TableHeadColumn scope="col">Price</TableHeadColumn>
+                                    <TableHeadColumn scope="col">Status</TableHeadColumn>
                                     <TableHeadColumn scope="col">
                                         <span class="sr-only">Actions</span>
                                     </TableHeadColumn>
