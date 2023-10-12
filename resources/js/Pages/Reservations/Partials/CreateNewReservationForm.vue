@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useForm, usePage } from '@inertiajs/vue3'
 
 import { User } from '@/types'
