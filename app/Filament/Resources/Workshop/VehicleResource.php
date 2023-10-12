@@ -69,7 +69,6 @@ class VehicleResource extends Resource
     {
         return $table
             ->columns([
-                //Tables\Columns\TextColumn::make('maker.name'),
                 Tables\Columns\TextColumn::make('customer.name')
                     ->searchable()
                     ->sortable()
@@ -100,8 +99,11 @@ class VehicleResource extends Resource
                 //Tables\Columns\TextColumn::make('seo_description'),
                 //Tables\Columns\TextColumn::make('sort'),
                 //Tables\Columns\TextColumn::make('created_at')->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')->date(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->sortable()
+                    ->date(),
             ])
+            ->defaultSort('id', 'desc')
             ->filters([
                 //
             ])
