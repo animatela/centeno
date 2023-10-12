@@ -32,6 +32,26 @@ const customerAction = computed(() =>
 
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 place-content-center sm:place-content-stretch sm:h-48">
                     <Link
+                        :href="route('vehicles')"
+                        class="flex flex-col max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                    >
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            Mis Vehículos
+                        </h5>
+                        <p class="font-normal text-gray-700 dark:text-gray-400">Registra tu vehículo con nosotros y experimenta un servicio automotriz de calidad y personalizado.</p>
+                    </Link>
+
+                    <Link
+                        :href="route('reservations')"
+                        class="flex flex-col max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                    >
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            Mis Reservas
+                        </h5>
+                        <p class="font-normal text-gray-700 dark:text-gray-400">Desde mantenimiento básico hasta reparaciones complejas, nos aseguraremos de que tu automóvil esté en las mejores manos.</p>
+                    </Link>
+
+                    <Link
                         :href="customerAction"
                         class="flex flex-col max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                     >
@@ -43,27 +63,6 @@ const customerAction = computed(() =>
                         </p>
                     </Link>
 
-                    <Link
-                        v-if="canMakeReservation"
-                        :href="route('vehicles')"
-                        class="flex flex-col max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-                    >
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            Mis Vehículos
-                        </h5>
-                        <p class="font-normal text-gray-700 dark:text-gray-400">Registra tu vehículo con nosotros y experimenta un servicio automotriz de calidad y personalizado.</p>
-                    </Link>
-
-                    <Link
-                        v-if="canMakeReservation"
-                        :href="route('reservations')"
-                        class="flex flex-col max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-                    >
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            Mis Reservas
-                        </h5>
-                        <p class="font-normal text-gray-700 dark:text-gray-400">Desde mantenimiento básico hasta reparaciones complejas, nos aseguraremos de que tu automóvil esté en las mejores manos.</p>
-                    </Link>
                 </div>
 
             </div>
