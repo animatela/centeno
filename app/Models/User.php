@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Workshop\Customer;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -51,7 +52,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'password' => 'hashed',
     ];
 
-    public function canAccessFilament(): bool
+    public function canAccessPanel(Panel $panel): bool
     {
         return str_ends_with($this->email, '@arcnet.dev') && $this->hasVerifiedEmail();
     }

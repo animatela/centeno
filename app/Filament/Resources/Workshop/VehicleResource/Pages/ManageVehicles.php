@@ -10,7 +10,7 @@ class ManageVehicles extends ManageRecords
 {
     protected static string $resource = VehicleResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),

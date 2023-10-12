@@ -10,7 +10,7 @@ class EditReservation extends EditRecord
 {
     protected static string $resource = ReservationResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\DeleteAction::make(),
