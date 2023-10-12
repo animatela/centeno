@@ -36,7 +36,7 @@ class DemoSeeder extends Seeder
 
         // Workshop
         $workshopUsers = $this->seedWorkshopUsers(5);
-        $workshopServices = $this->seedWorkshopServices(2);
+        $workshopServices = $this->seedWorkshopServices();
         $workshopCustomers = $this->seedWorkshopCustomers(5, $workshopUsers);
         $this->seedWorkshopServiceItems($workshopServices);
         $this->seedWorkshopVehicles(10, $workshopCustomers);
