@@ -23,7 +23,7 @@ const classNames = computed(() => [
 </script>
 
 <template>
-    <Link :class="classNames">
+    <Link href="#" :class="classNames">
         <slot />
     </Link>
 </template>
