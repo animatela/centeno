@@ -3,15 +3,13 @@ import { computed } from 'vue'
 import { Link } from '@inertiajs/vue3'
 
 interface Props {
-    current?: boolean;
+    current?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), { current: false })
 
 const textStyles = computed(() =>
-    props.current
-        ? 'text-slate-950 dark:text-white'
-        : 'text-slate-500 dark:text-slate-400'
+    props.current ? 'text-slate-950 dark:text-white' : 'text-slate-500 dark:text-slate-400'
 )
 
 const classNames = computed(() => [
