@@ -7,7 +7,7 @@ import Dropdown from '@/Components/Dropdown.vue'
 import DropdownLink from '@/Components/DropdownLink.vue'
 
 interface Props {
-    showing: boolean;
+    showing: boolean
 }
 
 defineProps<Props>()
@@ -22,17 +22,13 @@ const emit = defineEmits(['showingNavigation'])
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <Link :href="route('dashboard')">
-                        <ApplicationLogo
-                            class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"
-                        />
+                        <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </Link>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                        Dashboard
-                    </NavLink>
+                    <NavLink :href="route('dashboard')" :active="route().current('dashboard')"> Dashboard</NavLink>
 
                     <!--<NavLink :href="route('vehicles')" :active="route().current('vehicles')">
                         Mis Vehículos
@@ -69,10 +65,8 @@ const emit = defineEmits(['showingNavigation'])
                         </template>
 
                         <template #content>
-                            <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
-                            <DropdownLink :href="route('logout')" method="post" as="button">
-                                Log Out
-                            </DropdownLink>
+                            <DropdownLink :href="route('profile.edit')"> Profile</DropdownLink>
+                            <DropdownLink :href="route('logout')" method="post" as="button"> Log Out</DropdownLink>
                         </template>
                     </Dropdown>
                 </div>
