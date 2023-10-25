@@ -5,6 +5,7 @@ namespace Database\Seeders\Dummy;
 use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class DummyProductSeeder extends Seeder
 {
@@ -15,6 +16,12 @@ class DummyProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory()->count(25)->create();
+        $products = File::json('database/seeders/data/products.json');
+
+        foreach ($products as $product) {
+            Product::factory()->create($product);
+        }
+
+        dump(Product::all()->toArray());
     }
 }
