@@ -1,5 +1,4 @@
 import { fontFamily } from 'tailwindcss/defaultTheme'
-import colors from 'tailwindcss/colors'
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
 
@@ -16,13 +15,6 @@ export default {
 
     theme: {
         extend: {
-            colors: {
-                danger: colors.rose,
-                primary: colors.blue,
-                secondary: colors.gray,
-                success: colors.green,
-                warning: colors.yellow,
-            },
             fontFamily: {
                 sans: ['Figtree', ...fontFamily.sans],
             },
