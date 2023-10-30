@@ -20,8 +20,13 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
+            'number' => 'OR'.$this->faker->unique()->randomNumber(6),
             'total' => $this->faker->randomFloat(2, 0, 1000),
-            'status' => $this->faker->randomElement(['pending', 'completed', 'cancelled']),
+            'currency' => strtolower($this->faker->currencyCode()),
+            'status' => $this->faker->randomElement(['new', 'processing', 'shipped', 'delivered', 'cancelled']),
+            'notes' => $this->faker->realText(100),
+            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'updated_at' => $this->faker->dateTimeBetween('-5 month', 'now'),
         ];
     }
 }

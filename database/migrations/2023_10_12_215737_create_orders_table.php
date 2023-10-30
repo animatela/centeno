@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('orders', static function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->index();
-            $table->bigInteger('customer_id')->unsigned()->index();
-            $table->bigInteger('service_id')->unsigned()->index();
-            $table->bigInteger('payment_id')->unsigned()->index();
+            $table->foreignId('user_id')->nullable()->index();
+            $table->foreignId('customer_id')->nullable()->index();
+            $table->foreignId('service_id')->nullable()->index();
+            $table->foreignId('payment_id')->nullable()->index();
+            $table->string('number', 32)->unique();
+            $table->enum('status', ['new', 'processing', 'shipped', 'delivered', 'cancelled'])->default('new');
             $table->decimal('total', 10, 2);
-            $table->string('status');
+            $table->string('currency');
+            $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
