@@ -25,17 +25,17 @@ declare namespace Workshop {
     export interface Vehicle {
         id: number
         name: string
-        body_type?: string
-        maker?: string
-        model?: string
-        color?: number
-        year?: string
-        fuel_type?: string
-        transmission_type?: number
-        plate?: string
-        mileage?: string
-        is_visible?: number
-        sort?: string
+        body_type: string | null
+        maker: string | null
+        model: string | null
+        color: number | null
+        year: string | null
+        fuel_type: number | string
+        transmission_type: number | string
+        plate: string | null
+        mileage: string | null
+        is_visible: number | null
+        sort: string | null
     }
 
     export interface Reservation {
