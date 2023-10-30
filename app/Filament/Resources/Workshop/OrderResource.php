@@ -85,7 +85,8 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime('Y-m-d H:i:s', 'America/Lima')
                     ->sortable()
-                    ->toggleable(),
+                    ->toggleable()
+                    ->alignEnd(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
