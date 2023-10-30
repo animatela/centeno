@@ -1,4 +1,4 @@
-import { PageProps as InertiaPageProps } from '@inertiajs/core'
+import { Page, PageProps as InertiaPageProps } from '@inertiajs/core'
 import { AxiosInstance } from 'axios'
 import ziggyRoute, { Config as ZiggyConfig } from 'ziggy-js'
 import { PageProps as AppPageProps } from './'
@@ -20,4 +20,8 @@ declare module 'vue' {
 
 declare module '@inertiajs/core' {
     interface PageProps extends InertiaPageProps, AppPageProps {}
+}
+
+declare module '@inertiajs/vue3' {
+    export function usePage<T>(): Page<T>
 }
