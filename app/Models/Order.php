@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\OrderStatus;
 use App\Models\Workshop\Customer;
 use App\Models\Workshop\Service;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,6 +20,10 @@ class Order extends Model
         'total',
         'status',
         'notes',
+    ];
+
+    protected $casts = [
+        'status' => OrderStatus::class,
     ];
 
     public function user(): BelongsTo
