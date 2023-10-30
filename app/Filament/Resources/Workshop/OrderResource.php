@@ -15,7 +15,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class OrderResource extends Resource
 {
-    protected static ?string $label = 'Ordenes de Reparación';
+    protected static ?string $label = 'Orden de Reparación';
+
+    protected static ?string $pluralModelLabel = 'Órdenes de Reparación';
 
     protected static ?string $model = Order::class;
 
