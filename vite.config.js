@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite'
+import laravel from 'laravel-vite-plugin'
+import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
     build: {
@@ -8,9 +8,9 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 chunkFileNames: 'assets/app-[hash].js',
-                assetFileNames: 'assets/app-[hash][extname]'
-            }
-        }
+                assetFileNames: 'assets/app-[hash][extname]',
+            },
+        },
     },
     plugins: [
         laravel({
@@ -26,4 +26,4 @@ export default defineConfig({
             },
         }),
     ],
-});
+})
