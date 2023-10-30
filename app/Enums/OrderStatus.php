@@ -28,12 +28,13 @@ enum OrderStatus: string implements HasColor, HasLabel
         };
     }
 
-    public function getColor(): string|array|null
+    public function getColor(): ?string
     {
         return match ($this) {
             self::New => 'gray',
             self::Processing => 'warning',
-            self::Shipped, self::Delivered => 'success',
+            self::Shipped => 'primary',
+            self::Delivered => 'success',
             self::Cancelled => 'danger',
         };
     }
