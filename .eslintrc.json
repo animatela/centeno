@@ -20,7 +20,6 @@
         "vue"
     ],
     "rules": {
-        "semi": "error",
         "prefer-const": "error",
         "tailwindcss/no-custom-classname": "off",
         "tailwindcss/classnames-order": "error",
